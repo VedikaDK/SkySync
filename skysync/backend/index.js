@@ -1,14 +1,39 @@
 const express = require('express')
 const app = express()
-const port = 5000
-const mongoDB = require("./db")
-mongoDB(); 
+const dotenv = require("dotenv");
+// const session = require('express-session');
+// const bodyParser = require('body-parser');
+// const bcrypt = require('bcrypt');
+const mongoose = require("mongoose");
+const cors = require('cors');
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+dotenv.config();
+//Middelware
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow requests from your frontend
+}))
+app.use(express.json()); // Add this line to parse JSON requests
+
+const UserRoute = require("./Routes/CreateUser");
+const FlightRoute = require("./Routes/FlightRoute"); 
+mongoose.connect(process.env.URI).
+then(()=>{
+    console.log("Connected");
+    app.listen(process.env.PORT || 8000 , (err)=>{
+        if(err) console.log("Error " ,err)
+        console.log("Running Successfully at ", process.env.PORT )
+    });
+}
+).catch((error)=>{
+  console.log("Error" , error);
 })
-app.use(express.json())
-app.use('/api',require("./Routes/CreateUser"))
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+
+app.use(UserRoute);
+app.use('/api', FlightRoute);
+
+
+
+
+
+
+
