@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
-const mongoURL = 'mongodb+srv://mrunmaikandharkar:Strong2307@cluster0.e6ghm.mongodb.net/Flight_db?retryWrites=true&w=majority&appName=Cluster0';
+require('dotenv').config();
+//const mongoURL = 'mongodb+srv://mrunmaikandharkar:Strong2307@cluster0.e6ghm.mongodb.net/Flight_db?retryWrites=true&w=majority&appName=Cluster0';
+const mongoURL = process.env.MONGO_URL;
+
+
 async function fetchData() {
     try {
         // Fetch the 'users' collection
