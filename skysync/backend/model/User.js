@@ -3,6 +3,11 @@ const mongoose = require('mongoose')
 
 const {Schema} = mongoose;
 const UserSchema = new Schema({
+    firebaseUid: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     firstname:{
         type: String,
         required: true
