@@ -1,0 +1,134 @@
+
+.loginpage {
+  background-image: url('./Aeroplaneimg.jpg');
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Optional: Keeps the background image fixed on scroll */
+  height: 100vh; /* Ensures the homepage covers the full viewport height */
+  width: 100vw; /* Ensures the homepage covers the full viewport width */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Enables flexbox */
+  justify-content: flex-end; /* Aligns the container to the right */
+  align-items: center; /* Vertically centers the container */
+}
+
+.login-container {
+  max-width: 400px;
+  padding: 30px 80px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-right: 830px; /* Optional: Adds some space from the right edge */
+}
+#tagline {
+  font-size: 60px; /* Adjust the size as per your design */
+  font-weight: bold; /* Bold text */
+  color: white; /* White text color */
+  text-align: left; /* Align text to the left */
+  text-transform: uppercase; /* Capitalizes the text */
+  letter-spacing: 3px; /* Adds spacing between letters */
+  line-height: 1.2; /* Adjusts the spacing between lines */
+  font-family: 'Times New Roman', serif; /* Font choice */
+  position: absolute; /* Allows precise positioning */
+  right: 200px; /* Adjust this value to move the tagline more or less from the left side */
+  top: 380px; /* Places the tagline vertically in the middle */
+  transform: translateY(-50%); /* Ensures vertical centering */
+  
+  /* Additional styling for a more visually appealing tagline */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adds a subtle shadow */
+  animation: tagline-animation 1s  ease-in-out; /* Creates a simple animation */
+}
+@keyframes tagline-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(10);
+  }
+}
+
+.loginpage.form {
+  margin-bottom: 20px;
+}
+
+.loginpage.form-control {
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 8px; /* Rounded corners for input fields */
+  font-size: 16px;
+  border: 2px solid #ccc; /* Soft border color */
+  box-shadow: none;
+  width: 250px;
+}
+
+.loginpage.form-control:focus {
+  border-color: #007bff; /* Border color change on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Subtle shadow on focus */
+}
+
+.loginpage.login-btn {
+  width: 150px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 12px; /* More padding for buttons */
+  font-size: 16px;
+  border-radius: 8px; /* More rounded buttons */
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+/* .google-btn {
+  width: 100%;
+  margin-bottom: 15px;
+} */
+#Google-button {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  margin-bottom: 15px; 
+}
+
+.phone-btn {
+  width: 240px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 3px; 
+  border: none;
+  cursor: pointer;
+}
+
+.phone-btn:hover {
+  background-color: #218838;
+}
+
+.signup-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signup-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.loginpage.hr {
+  margin: 20px 0;
+  border-top: 1px solid #ddd;
+  
+}

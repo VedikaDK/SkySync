@@ -1,0 +1,125 @@
+/*General page background and signup form container */
+.signuppage {
+    background-image: url('./Aeroplaneimg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
+.signupc {
+    background-color: rgba(0, 0, 0, 0.6); /* Dark transparent background */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    width: 80%; /* Adjust width to fill the space */
+    max-width: 1000px; /* Max width for large screens */
+}
+
+
+
+.signupcontainer, .infocontainer{
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white for both */
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1; /* Ensure both divs take equal width */
+    min-width: 250px; /* Minimum width to prevent shrinkage */
+}
+.infocontainer{
+    height: 415px;
+    background-image: url("./Loginimg.jpg");
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    opacity: 0.8;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+.form-control {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+.form-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    color: #777;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+.form-control:focus {
+    border-bottom: 2px solid #00bfff;
+}
+
+.form-control:focus ~ label,
+.form-control:not(:placeholder-shown) ~ label {
+    top: -20px;
+    font-size: 0.9rem;
+    color: #00bfff;
+}
+
+button {
+    background-color: #6cb1cb;
+    border: none;
+    padding: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: white;
+    border-radius: 8px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+
+button:hover {
+    background-color: #5a9dad;
+}
+
+/* Already have an account section */
+.AlreadyAccount {
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    width: 80%; /* Ensure it aligns with the signupc container width */
+}
+
+.AlreadyAccount a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+.AlreadyAccount a:hover {
+    text-decoration: underline;
+}
