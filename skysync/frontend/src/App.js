@@ -18,16 +18,21 @@ function App() {
 
 export default App;***/
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from "./Components/HomePage/HomePage.js";
-import LoginPage from "./Components/LoginPage/Login.js";
-
+//import LoginPage from "./Components/LoginPage/Login.js";
+import FlightSearch from "./Components/FlightSearch/FlightSearch.js"; 
 
 
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+       <Route path="/FlightSearch" element={<FlightSearch />} /> 
+        {/* Add more routes here as needed */}
+      </Routes>
+    </Router>
   );
 }
 

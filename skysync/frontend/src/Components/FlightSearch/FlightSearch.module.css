@@ -1,0 +1,113 @@
+.flightSearch {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  min-height: 100vh; /* Ensures the page height covers the viewport */
+}
+
+.backgroundImageSection {
+  background-image: url('imae3.jpeg'); /* Replace with correct path */
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 300px;
+  margin: 0 auto 20px;
+  border-radius: 15px;
+}
+
+
+.flightInfoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #dde8f9;
+  border-radius: 25px;
+  padding: 10px 20px;
+  width: 70%;
+  margin: 20px auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.flightInfoItem {
+  color: #000080;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.flightInfoDivider {
+  border-left: 1px dotted #000080;
+  height: 20px;
+  margin: 0 20px;
+}
+
+.flightSearch {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.flightResult {
+  border: 2px solid #fcfdfe;
+  border-radius: 8px;
+  background-color: #d7dceb;
+  margin-bottom: 20px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 15px auto;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flightDetailsLeft {
+  width: 25%;
+  text-align: left;
+  
+}
+.flightDetailsLeft h3 {
+  color: #004080;
+  margin-bottom: 5px;
+}
+.flightInfoBetween{
+  color: #333;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.flightInfoCenter {
+  width: 40%;
+  text-align: center;
+  
+}
+.flightBetween{
+  color: #333;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+
+.flightDetailsRight {
+  width: 20%;
+  text-align: right;
+}
+
+.flightPrice h3 {
+  color: #004080;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.bookButton {
+  background-color: #fcb20d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 50%;
+  height: 30px;
+} 

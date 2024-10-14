@@ -1,14 +1,18 @@
 /* src/HomePage.css */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('./background-image.jpg'); /* Path to your background image */
-    background-size: cover; /* Ensures the image covers the entire background */
-    background-position: center; /* Centers the background image */
-    background-repeat: no-repeat; /* Prevents the background image from repeating */
-  }
-  
+.homepage {
+  /* background-image: url('./background-image.jpg'); */
+  background-image: url('img2.jpg'); 
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Optional: Keeps the background image fixed on scroll */
+  /* Other background properties */
+  min-height: 100vh; /* Ensures the homepage covers the full viewport height */
+  width: 100vw; /* Ensures the homepage covers the full viewport width */
+  margin: 0;
+  padding: 0;
+
+}
   .header {
     display: flex;
     justify-content: space-between;
@@ -50,26 +54,53 @@ body {
     background-color: #004080;
     color: #fff;
     border: none;
+    /* border: 1px solid #f8f8f8; */
     border-radius: 5px;
     cursor: pointer;
+
   }
   
   .main-content {
     text-align: center;
-    margin: 50px 0;
+    margin: 30px 0; 
+
   }
+  
   
   .main-content h2 {
-    font-size: 2rem;
+    font-size: 2em;
     margin-bottom: 20px;
-    color: #faf7f7;
+    color: #fffcfc; 
+    font-weight: bold; 
+    font-family: 'Pacifico', cursive;
+    
+    /* Animation */
+    opacity: 0; /* Start with an invisible state */
+    transform: translateY(30px); /* Start with tagline 30px below its final position */
+    animation: slideUpFadeIn 2s ease-in-out forwards; /* Apply the animation */
   }
   
+  /* Define the keyframes for the animation */
+  @keyframes slideUpFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px); /* Positioned 30px lower */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Final position */
+    }
+  }
+  
+  
   .booking-form {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border-radius: 10px;
-    display: inline-block;
+    background-color: #f8f8f840; 
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 3px #131313; 
+  display: inline-block;
+  margin-top: 100px;  /* Add more margin to move the box down */ 
+  width: 80%; 
   }
   
   .tabs {
@@ -95,14 +126,15 @@ body {
   }
   
   .form-group {
-    flex-basis: 48%; /* Adjust the width as needed */
+    flex-basis: 30%; /* Adjust the width as needed */ 
     margin-bottom: 15px;
   }
   
   .form-group label {
     display: block;
     margin-bottom: 5px;
-    color: #333;
+    color: #080000; 
+   
   }
   
   .form-group input {
@@ -111,24 +143,34 @@ body {
     border-radius: 5px;
     border: 1px solid #ccc;
   }
+  .form-group select, .form-group input {
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+  }
   
-  .promo-btn, .search-btn {
+  /* Adjust the width for all form controls (including dropdowns and inputs) */
+  .form-group select {
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  } 
+  
+   .search-btn {
     flex-basis: 48%;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 25px; 
   }
   
-  .promo-btn {
-    background-color: transparent;
-    border: none;
-    color: #004080;
-    text-decoration: underline;
-  }
-  
+ 
   .search-btn {
     background-color: #004080;
     color: #fff;
     border: none;
   }
-  
