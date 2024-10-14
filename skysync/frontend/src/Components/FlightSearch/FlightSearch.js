@@ -30,102 +30,100 @@ function FlightSearch({ from, to }) {
   }, [from, to]); // Fetch flights when 'from' or 'to' changes ****/
   // FlightSearch.js
   import React, { useEffect, useState } from 'react';
-  import { useLocation } from 'react-router-dom';
-  import './FlightSearch.css';
-  import luggage from './image.png'; 
+import { useLocation } from 'react-router-dom';
+import styles from './FlightSearch.module.css'; // Import the CSS module
+//import luggage from './image.png'; 
+import Navbar from '../Navbar/Navbar';
 
-  //import editIcon from './edit.png';  // Replace this with the path to your edit icon
-  
-  function FlightSearch() { 
-    const location = useLocation();
-    const [flights, setFlights] = useState([]);
-    const [loading, setLoading] = useState(true);
-  
-    // Retrieve search parameters from the location state
-    const { from, to, departureDate, returnDate, passengers } = location.state || {};
-  
-    useEffect(() => {
-      const fetchFlights = async () => {
-        try {
-          const response = await fetch('http://localhost:5000/api/search-flights', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              from,
-              to,
-              departureDate,
-              returnDate,
-              passengers,
-            }),
-          });
-  
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-  
-          const data = await response.json();
-          setFlights(data);
-        } catch (error) {
-          console.error('Error fetching flights:', error);
-        } finally {
-          setLoading(false);
+function FlightSearch() { 
+  const location = useLocation();
+  const [flights, setFlights] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Retrieve search parameters from the location state
+  const { from, to, departureDate, returnDate, passengers } = location.state || {};
+
+  useEffect(() => {
+    const fetchFlights = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/search-flights', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from,
+            to,
+            departureDate,
+            returnDate,
+            passengers,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-      };
-  
-      fetchFlights();
-    }, [from, to, departureDate, returnDate, passengers]);
-  
-    return (
-      <div className="flight-search">
-        <div className="flight-info-container">
-          <div className="flight-info-item">{from} - {to}</div>
-          <div className="flight-info-divider"></div>
-          <div className="flight-info-item">{departureDate}</div>
-          <div className="flight-info-divider"></div>
-          <div className="flight-info-item">{passengers} {passengers > 1 ? 'Passengers' : 'Passenger'}</div>
-          <div className="flight-info-divider"></div>
-          
-        </div>
-  
-        <h2>Available Flights:</h2>
-        {loading ? (
-          <p>Loading...</p>
-        ) : flights.length > 0 ? (
-          flights.map((flight) => (
-            <div key={flight._id} className="flight-result">
-               <div className="flight-details-left">
-               <h3>{flight.FlightName} ({flight.FlightCode})</h3>
-              
-                 </div> 
-                 <div className='flight-info-between'>
-                 <p className="time">{flight.DepartingTime}</p>
-                 </div> 
-              <div className="flight-info-center">
-                <p>{flight.DepartingCity} &rarr; {flight.ArrivingCity}</p>
-                  <p className="flight-duration">Duration: {flight.Duration}</p>
-                  
-                 </div>
-                <div className='flight-between'>
-                <p className="time">{flight.ArrivingTime}</p>
-                </div>
-                 <div className="flight-details-right">
-                  <div className="flight-price">
-                   <h3>Rs {flight.Price}</h3>
-                  <button className="book-button">Book Flight</button>
-                  </div>
-                </div>
-               </div>
 
-          
-          ))
-        ) : (
-          <p>No flights found for the given criteria.</p>
-        )}
+        const data = await response.json();
+        setFlights(data);
+      } catch (error) {
+        console.error('Error fetching flights:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFlights();
+  }, [from, to, departureDate, returnDate, passengers]);
+
+  return (
+    <div className={styles.flightSearch}>
+        <div className={styles.backgroundImageSection}> 
+        <Navbar /> 
+      <div className={styles.flightInfoContainer}>
+        <div className={styles.flightInfoItem}>{from} - {to}</div>
+        <div className={styles.flightInfoDivider}></div>
+        <div className={styles.flightInfoItem}>{departureDate}</div>
+        <div className={styles.flightInfoDivider}></div>
+        <div className={styles.flightInfoItem}>{passengers} {passengers > 1 ? 'Passengers' : 'Passenger'}</div>
+        <div className={styles.flightInfoDivider}></div>
       </div>
-    );
-  }
-  
-  export default FlightSearch; 
-  
+      <h2>Available Flights</h2> 
+     
+      </div>
+     
+      {loading ? (
+        <p>Loading...</p>
+      ) : flights.length > 0 ? (
+        flights.map((flight) => (
+          <div key={flight._id} className={styles.flightResult}>
+            <div className={styles.flightDetailsLeft}>
+              <h3>{flight.FlightName} ({flight.FlightCode})</h3>
+            </div> 
+            
+            <div className={styles.flightInfoBetween}>
+              <p className={styles.time}>{flight.DepartingTime}</p>
+            </div>
+            <div className={styles.flightInfoCenter}>
+              <p>{flight.DepartingCity} &rarr; {flight.ArrivingCity}</p>
+              <p className={styles.flightDuration}>Duration: {flight.Duration}</p>
+            </div>
+            <div className={styles.flightBetween}>
+              <p className={styles.time}>{flight.ArrivingTime}</p>
+            </div>
+            <div className={styles.flightDetailsRight}>
+              <div className={styles.flightPrice}>
+                <h3>Rs {flight.Price}</h3>
+                <button className={styles.bookButton}>Book Flight</button>
+              </div>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No flights found for the given criteria.</p>
+      )}
+    </div>
+  );
+}
+
+export default FlightSearch;
