@@ -1,0 +1,238 @@
+/* .about-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+}
+
+.upperpart {
+    height: 50vh;
+}
+
+.Navbar {
+    height: 8vh;
+    background-color: 
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.Navbar nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.Navbar nav ul li {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.SlidePhoto {
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.SlidePhoto .slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 1s ease-in-out;
+}
+
+.Info {
+    padding: 20px;
+    background-color: #fff;
+    color: #333;
+    flex-grow: 1;
+}
+
+
+@media (max-width: 768px) {
+    .upperpart {
+        height: 60vh;
+    }
+
+    .Navbar {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .SlidePhoto {
+        height: 30vh;
+    }
+
+    .Info {
+        padding: 15px;
+    }
+} */
+
+
+
+
+.about-page {
+    height: 100% ;/* Fixed height */
+    width: 100%; /* Fixed width */
+    background-color: aqua;
+}
+
+.upperpart {
+    height: 500px; /* Fixed height */
+    position: relative;
+}
+
+.Navbar {
+    height: 80px; /* Fixed height */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1;
+    box-sizing: border-box;
+    
+}
+.navbar-logo {
+    height: 50px; /* Adjust as needed */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the logo scales properly */
+}
+.Navbar nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.Navbar nav ul li {
+    margin-left: 10px;
+    cursor: pointer;
+    list-style: none;
+}
+
+
+.SlidePhoto {
+    height: 100%; /* Fixed height */
+    position: relative;
+    overflow: hidden;
+}
+
+.SlidePhoto .slide-img {
+    width: 100%; /* Fixed width */
+    height: 100%;
+    object-fit: cover;
+}
+.about-text {
+    position: absolute;
+    bottom: 20px; /* Move it up from the bottom of the image */
+    left: 20px;   /* Move it slightly to the right */
+    color: white;
+    font-size: 35px; /* Adjust size as necessary */
+    font-weight: bold;
+    z-index: 2; /* Ensure it appears above the image */
+}
+
+.Info {
+    padding-top:  20px;
+    padding-left: 10px;
+    background-color: #edeaea;
+    color: #333;
+    flex-grow: 1;
+    width: 100% ;
+}
+.mission-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align:start;
+    position: relative;
+    left: 120px;
+}
+.Para1{
+    text-align:start;
+    position: relative;
+    left: 140px;
+    margin-right: 50px;
+    width: calc(100% - 450px); /* Adjusts the width to accommodate the movement */
+    white-space: normal; /* Ensures that the text will wrap */
+    overflow-wrap: break-word; /* Ensures long words will break and not overflow */
+    font-size: large;
+   
+}
+.Mission{
+    text-align:start;
+    position: relative;
+    left: 140px;
+    font-size: larger;
+    font-style:inherit;
+    
+}
+.MissionStatement {
+    text-align: left; /* Aligns the text to the left side */
+    position: relative;
+    left: 160px; /* Moves the text inward from the left */
+    margin-right: 50px; /* Adds space on the right */
+    width: calc(100% - 450px); /* Adjust width to account for the positioning */
+    font-size: 1.2rem; /* Increases the text size slightly */
+    line-height: 1.6; /* Improves readability by increasing line spacing */
+    color: #333; /* A soft, neutral color for the text */
+    font-family: 'Roboto', sans-serif; /* A clean, modern font */
+    word-wrap: break-word; /* Ensures the text wraps and doesn't overflow */
+    padding: 20px; /* Adds padding for better spacing within the container */
+    border-left: 4px solid #007bff; /* Adds a blue left border for emphasis */
+    background-color: #f9f9f9; /* Adds a light background for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+    border-radius: 8px; /* Rounds the corners slightly */
+}
+
+.Commitment{
+    text-align:start;
+    position: relative;
+    left: 140px;
+    font-size: larger;
+    font-style:inherit;
+    
+}
+.CommitmentStatement{
+    text-align:start;
+    position: relative;
+    left: 140px;
+    margin-right: 50px;
+    width: calc(100% - 450px); /* Adjusts the width to accommodate the movement */
+    white-space: normal; /* Ensures that the text will wrap */
+    overflow-wrap: break-word; /* Ensures long words will break and not overflow */
+    font-size: large;
+}
+
+.Join{
+    text-align:start;
+    position: relative;
+    left: 140px;
+    font-size: larger;
+    font-style:inherit;
+
+}
+.JoinStatement{
+    text-align:start;
+    position: relative;
+    left: 140px;
+    margin-right: 50px;
+    width: calc(100% - 450px); /* Adjusts the width to accommodate the movement */
+    white-space: normal; /* Ensures that the text will wrap */
+    overflow-wrap: break-word; /* Ensures long words will break and not overflow */
+    font-size: large;
+}
+.Foot{
+    height: 100px;
+    background-color: #edeaea;
+}

@@ -1,0 +1,66 @@
+.page-two {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background-color: #f7f7f7; /* Light background color */
+}
+
+.page-two-left {
+    flex: 1;
+    margin-right: 30px; /* Space between text and image */
+}
+
+.page-two-right {
+    flex: 1;
+    padding-left: 20px; /* Space for image */
+    margin-left: 60px;
+}
+
+.page-two-image {
+    width: 80%; /* Full width */
+    height: auto;
+    border-radius: 10px; /* Rounded corners for the image */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.page-two-left h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0f2339; /* Dark color for heading */
+    margin-bottom: 20px;
+}
+
+.page-two-left p {
+    font-size: 1.1rem;
+    color: #555; /* Gray color for paragraph text */
+    line-height: 1.6; /* Line height for better readability */
+    margin-bottom: 20px;
+}
+
+.page-two-btn {
+    background-color: #0f2339; /* Primary button color */
+    color: white; /* Text color */
+    padding: 15px 25px; /* Padding for the button */
+    border: none;
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease; /* Smooth transition */
+    max-width: 150px;
+    margin-left: 250px;
+}
+
+.page-two-btn:hover {
+    background-color: #1a365d; /* Darker shade on hover */
+}
+
+.page-two-left a {
+    color: #007bff; /* Link color */
+    text-decoration: underline; /* Underline the link */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+.page-two-left a:hover {
+    color: #1a365d; /* Darker shade on hover */
+}
