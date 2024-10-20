@@ -13,6 +13,7 @@ const Signup = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [contact, setContact] = useState('');
+  const [gender, setGender] = useState(""); 
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
 
@@ -30,7 +31,8 @@ const Signup = () => {
       lastname: lastName,   // Change to match backend
       email,
       password,
-      contact // Add this if you have a contact input in your form
+      contact,
+      gender // Add this if you have a contact input in your form
   };
 
     try {
@@ -69,6 +71,28 @@ const Signup = () => {
         <Form onSubmit={handleSubmit}>
                {/* FirstName ,LastName , Etc information to be added */}
            
+
+               <Form.Group className="mb-3">
+            
+            <div className="radio-group">
+              <Form.Check
+                type="radio"
+                label="Male"
+                name="gender"
+                value="Male"
+                onChange={(e) => setGender(e.target.value)}
+              />
+              <Form.Check
+                type="radio"
+                label="Female"
+                name="gender"
+                value="Female"
+                onChange={(e) => setGender(e.target.value)}
+              />
+            </div>
+          </Form.Group>
+
+
           <Form.Group className="mb-3" controlId="formBasicFirstName">
             <Form.Control
               type="text"
@@ -119,7 +143,7 @@ const Signup = () => {
       </div>
 
       <div className="infocontainer">
-          <h2> " Welcome "</h2>
+          <h2 className="Welcome"> " Welcome "</h2>
          
       </div>
       </div>

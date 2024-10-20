@@ -1,34 +1,4 @@
-/***import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './FlightSearch.css';
 
-function FlightSearch({ from, to }) {
-  const [flights, setFlights] = useState([]); // State to store flight data
-  const [error, setError] = useState(null); // State to handle errors
-
-  useEffect(() => {
-    // Function to fetch flights based on departing and arriving cities
-    const fetchFlights = async () => {
-      try {
-        // Send GET request to the backend with 'from' and 'to' as query parameters
-        const response = await axios.get('http://localhost:5000/api/flights', {
-          params: { from, to }
-        });
-        
-        // Set the flight data in state
-        setFlights(response.data);
-      } catch (error) {
-        console.error('Error fetching flight data:', error);
-        setError('Could not fetch flight data. Please try again.');
-      }
-    };
-
-    // Only call fetchFlights if both 'from' and 'to' are available
-    if (from && to) {
-      fetchFlights();
-    }
-  }, [from, to]); // Fetch flights when 'from' or 'to' changes ****/
-  // FlightSearch.js
   import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './FlightSearch.module.css'; // Import the CSS module

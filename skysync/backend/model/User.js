@@ -31,6 +31,10 @@ const UserSchema = new Schema({
         required: true,
         unique: true ,
         index:true
+    },
+    gender:{
+        type: String,
+        required:true
     }
 
 },{timestamps:true});

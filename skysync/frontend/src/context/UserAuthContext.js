@@ -31,10 +31,16 @@ export function UserAuthContextProvider({ children }) {
   }
 
   function setUpRecaptha(number) {
-    const recaptchaVerifier = new RecaptchaVerifier(
-      "recaptcha-container",
-      {},
-      auth
+
+    if (!auth || !auth.settings) {
+      console.error("Firebase auth is not initialized.");
+      return;
+    }
+
+    const recaptchaVerifier = new RecaptchaVerifier(auth
+      ,"recaptcha-container",
+      {}
+      
     );
     recaptchaVerifier.render();
     return signInWithPhoneNumber(auth, number, recaptchaVerifier);

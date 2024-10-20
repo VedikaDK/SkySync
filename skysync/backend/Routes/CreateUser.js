@@ -8,9 +8,9 @@ const bcrypt = require('bcrypt');
 router.post('/signup',async(req,res)=>{
     console.log("Received data:", req.body);
     try{
-        const { firebaseUid,firstname, lastname, email, password, contact } = req.body;
+        const { firebaseUid,firstname, lastname, email, password, contact,gender } = req.body;
         // Validate the incoming data (optional but recommended)
-        if (!firstname || !lastname || !email || !password || !contact) {
+        if (!firstname || !lastname || !email || !password || !contact || !gender) {
             return res.status(400).json({ message: 'All fields are required' });
         }
 
@@ -34,7 +34,8 @@ router.post('/signup',async(req,res)=>{
             lastname,
             email,
             password : hashedPassword,
-            contact
+            contact,
+            gender
         });
 
         console.log("Saving new user:", newUser);
@@ -77,7 +78,7 @@ router.post('/login', async (req, res) => {
     console.log("Checking if the password is valid");
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      console.log("Invalid password");
+      console.log(`Invalid password for user ${email}. Entered password: ${password}`);
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 

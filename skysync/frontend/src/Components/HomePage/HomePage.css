@@ -1,176 +1,106 @@
-/* src/HomePage.css */
 .homepage {
-  /* background-image: url('./background-image.jpg'); */
   background-image: url('img2.jpg'); 
-  background-size: cover; /* Ensures the image covers the entire background */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-attachment: fixed; /* Optional: Keeps the background image fixed on scroll */
-  /* Other background properties */
-  min-height: 100vh; /* Ensures the homepage covers the full viewport height */
-  width: 100vw; /* Ensures the homepage covers the full viewport width */
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
+  min-height: 100vh; 
+  width: 100vw; 
   margin: 0;
   padding: 0;
-
 }
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: transparent; /* Make navbar transparent */
-    box-shadow: 0px 4px 2px -2px gray;
-  }
-  
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  .navbar ul li {
-    margin-right: 20px;
-  }
-  
-  .navbar ul li a {
-    text-decoration: none;
-    color: #ffffff; /* White text for navbar items */
-    font-weight: bold;
-  }
-  
-  .login-btn {
-    padding: 10px 20px;
-    background-color: #004080;
-    color: #fff;
-    border: none;
-    /* border: 1px solid #f8f8f8; */
-    border-radius: 5px;
-    cursor: pointer;
+.line{
+  margin-top: 5%;
+}
 
-  }
-  
-  .main-content {
-    text-align: center;
-    margin: 30px 0; 
 
+.homepage-main-content {
+  text-align: center;
+  margin: 30px 0; 
+}
+
+.homepage-main-content h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #fffcfc; 
+  font-weight: bold; 
+  font-family: 'Pacifico', cursive;
+  opacity: 0; 
+  transform: translateY(30px); 
+  animation: slideUpFadeIn 2s ease-in-out forwards; 
+}
+
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); 
   }
-  
-  
-  .main-content h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #fffcfc; 
-    font-weight: bold; 
-    font-family: 'Pacifico', cursive;
-    
-    /* Animation */
-    opacity: 0; /* Start with an invisible state */
-    transform: translateY(30px); /* Start with tagline 30px below its final position */
-    animation: slideUpFadeIn 2s ease-in-out forwards; /* Apply the animation */
+  100% {
+    opacity: 1;
+    transform: translateY(0); 
   }
-  
-  /* Define the keyframes for the animation */
-  @keyframes slideUpFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(30px); /* Positioned 30px lower */
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0); /* Final position */
-    }
-  }
-  
-  
-  .booking-form {
-    background-color: #f8f8f840; 
+}
+
+.homepage-booking-form {
+  background-color: #f8f8f840; 
   padding: 20px;
   border-radius: 10px;
   box-shadow: 5px 5px 5px 3px #131313; 
   display: inline-block;
-  margin-top: 100px;  /* Add more margin to move the box down */ 
+  margin-top: 13%; 
   width: 80%; 
-  }
-  
-  .tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .tab {
-    background-color: #004080;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    margin-right: 10px;
-    border-radius: 5px;
-  }
-  
-  /* Horizontal layout for the form */
-  .form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .form-group {
-    flex-basis: 30%; /* Adjust the width as needed */ 
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #080000; 
-   
-  }
-  
-  .form-group input {
-    padding: 10px;
-    width: 95%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  .form-group select, .form-group input {
-    padding: 10px;
-    width: 95%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box; /* Ensures padding is included in the width */
-  }
-  
-  /* Adjust the width for all form controls (including dropdowns and inputs) */
-  .form-group select {
-    padding: 10px;
-    width: 95%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  } 
-  
-   .search-btn {
-    flex-basis: 48%;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 25px; 
-  }
-  
- 
-  .search-btn {
-    background-color: #004080;
-    color: #fff;
-    border: none;
-  }
+}
+
+.homepage-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.homepage-tab {
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 5px;
+  width: 20%;
+}
+
+.homepage-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.homepage-form-group {
+  flex-basis: 30%; 
+  margin-bottom: 15px;
+}
+
+.homepage-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #080000; 
+}
+
+.homepage-form-group input, 
+.homepage-form-group select {
+  padding: 10px;
+  width: 95%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; 
+}
+
+.homepage-search-btn {
+  flex-basis: 48%;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 25px; 
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  width: 50%;
+}

@@ -16,35 +16,60 @@
 }
 
 .signupc {
+   
     background-color: rgba(0, 0, 0, 0.6); /* Dark transparent background */
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 50px;
+    align-items: stretch; /* Ensure both containers stretch to the same height */
+    gap: 2%; /* Percentage-based gap between containers */
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    width: 80%; /* Adjust width to fill the space */
-    max-width: 1000px; /* Max width for large screens */
+    width: 60%; /* Adjust width to fill more space */
+    max-width: 1200px; /* Max width for large screens */
+    margin: 0 auto; /* Center the main container */
 }
 
 
 
 .signupcontainer, .infocontainer{
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white for both */
+   
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
     padding: 20px;
     border-radius: 10px;
     flex: 1; /* Ensure both divs take equal width */
+    width: 48%; /* Adjust width to be slightly less than 50% to account for gap */
     min-width: 250px; /* Minimum width to prevent shrinkage */
+    box-sizing: border-box; /* Ensure padding does not affect width */
+    height: 100%; /* Ensure containers are the same height */
 }
-.infocontainer{
-    height: 415px;
+.infocontainer {
     background-image: url("./Loginimg.jpg");
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     opacity: 0.8;
+    height: 100%; /* Ensure full height of the parent container */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: flex-start; /* Align items at the top */
+   padding-top: 0%;
+   
+    
 }
+/* Signup.css */
+.radio-group {
+    display: flex;
+    gap: 15px; /* Adds space between radio buttons */
+    align-items: center;
+  }
+  
+  .radio-group label {
+    margin-left: 5px;
+  }
+  
+  .signupcontainer {
+    /* other styles */
+  }
 
 h2 {
     text-align: center;
@@ -101,7 +126,14 @@ button {
     width: 100%;
     transition: background-color 0.3s ease;
 }
-
+.welcome {
+    margin-top: 0; /* No top margin */
+    margin-bottom: 0; /* Remove bottom margin if not needed */
+    font-size: 24px; /* Set desired font size */
+    text-align: center; /* Center text */
+    color: #fff; /* Change text color to white */
+    padding: 0; /* No padding */
+}
 
 button:hover {
     background-color: #5a9dad;
@@ -122,4 +154,17 @@ button:hover {
 
 .AlreadyAccount a:hover {
     text-decoration: underline;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .signupc {
+        flex-direction: column; /* Stack containers vertically on smaller screens */
+        gap: 20px; /* Reduce gap between containers */
+    }
+
+    .signupcontainer, 
+    .infocontainer {
+        width: 100%; /* Full width for stacked layout */
+        min-width: 0; /* Allow shrinking on small screens */
+    }
 }
