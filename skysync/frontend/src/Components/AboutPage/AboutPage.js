@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import './AboutPage.css';
 
@@ -106,4 +105,4 @@ const AboutPage = () => {
     );
 };
 
-export default AboutPage;
+export default AboutPage;

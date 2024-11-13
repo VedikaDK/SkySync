@@ -1,0 +1,240 @@
+.seatpage {
+    width: 100%; /* Full width relative to parent */
+    height: 100%;  /* Full height relative to parent */
+    background-color: rgb(255, 255, 255); /* Background color */
+    position: fixed; /* Fixed position ensures it covers the window */
+    display: flex; /* Enable flexbox for the content */
+    flex-direction: column; /* Align content vertically */
+    overflow-y: auto;
+
+}
+
+.navbar-container {
+    width: 100%; /* Full width */
+    background-color: #333; /* Optional: Navbar background color */
+    position: relative; /* Keep it at the top */
+    flex-shrink: 0;
+}
+
+.content {
+    display: flex; /* Flexbox layout for the sections */
+    flex-direction: row; /* Align children in a horizontal row */
+    width: 100%;
+    height: 100%; /* Fill the remaining height */
+}
+
+.Section1 {
+    width: 60%; /* 60% of the parent container */
+    padding: 20px; /* Add some padding */
+}
+
+.FlightRoute {
+    width: 80%; /* Full width of the parent container */
+    height: 6%; /* Adjust the height as per your preference */
+    background-color: #0b113b; /* Background color for visibility */
+    border-radius: 25px; /* Rounded corners */
+    display: flex; /* Flexbox to align contents horizontally if needed */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    margin-top: 4%;
+    margin-left: 9%;
+    margin-bottom: 5% ;/* Adds space below the FlightRoute div */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for depth */
+    color: #ffffff;
+    font-size: large;
+}
+.InformationForm{
+    width: 100%;
+    height: auto; /* Adjust height to fit content */
+    margin-left: 3%;
+}
+.Title {
+    font-size: 20px; /* Adjust font size */
+    font-weight: bold; /* Bold text */
+    color: #0b113b; /* Dark color for readability */
+    text-align: left; /* Aligns text to the left */
+    padding-top: 3%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Font family */
+    margin-left: 3%; /* Positioning inside the div */
+  }
+.Details{
+    font-size: 15px; /* Adjust font size as needed */
+    font-weight: bold; /* Bold text */
+    color: #0b113b;; /* Dark color for better readability */
+    text-align: left; /* Aligns text to the left */
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Adds a classic serif font */
+    margin-left: 3%; /* Adjusts positioning inside the div */
+    
+}
+.import-btn {
+   /* Smaller button size */
+    width: 20%;
+    font-size: small;
+    background-color: #004080; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    margin-bottom: 20px; /* Space below the button */
+    display: block; /* Ensure it takes a new line */
+    margin-left: 3%;
+}
+
+.GenderSel {
+    display: flex; /* Flexbox to arrange items */
+    justify-content: flex-start; /* Align to the start */
+    margin-bottom: 15px; /* Space below the gender selection */
+}
+
+.GenderSel label {
+    margin-right: 20px; /* Space between gender options */
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"] {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px; /* Padding inside the inputs */
+    margin-bottom: 15px; /* Space below the input fields */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+}
+
+
+.Section2 {
+    padding: 20px;
+    background-color: #f5faff;
+    border-radius: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.FormTrace {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.progress-bar {
+    display: flex;
+    gap: 8px;
+}
+
+.progress-step {
+    width: 40px;
+    height: 3px;
+    background-color: #d1d5db;
+    transition: background-color 0.3s;
+}
+
+.progress-step.active {
+    background-color: #1d4ed8;
+}
+
+.trip-summary {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.details-link {
+    color: #1d4ed8;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.summary-section {
+    background-color: #e6f7ff;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.flight-summary {
+    margin-top: 10px;
+}
+
+.summary-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.flight-details {
+    background-color: #e6f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    color: #333;
+    font-size: 14px;
+}
+
+.flight-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.label {
+    font-weight: bold;
+    color: #333;
+}
+
+.flight-number {
+    color: #333;
+}
+
+.badge {
+    background-color: #cfe9ff;
+    color: #1d4ed8;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.route {
+    font-weight: bold;
+    color: #1d4ed8;
+    margin: 5px 0;
+}
+
+.schedule,
+.baggage {
+    color: #666;
+    font-size: 12px;
+}
+
+.NextButton {
+    margin-top: 2%;
+    margin-bottom:2% ;
+    width: 10%;
+    margin-left: 48%;
+    background-color: #0b113b;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .NextButton:hover {
+    background-color: #1d4ed8;
+  }

@@ -1,0 +1,129 @@
+/* General container styling */
+.seat-map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Scrollbar styling */
+.seat-map::-webkit-scrollbar {
+  width: 8px;
+}
+
+.seat-map::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+/* Seat row styling */
+.seat-row {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0;
+}
+
+/* Compact seat styling */
+.seat {
+  width: 45px;
+  height: 45px;
+  margin: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #d0e2ea; /* Sky blue background for all seats */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Available, Selected, and Reserved Seat States */
+.seat.available {
+  color: #000;
+}
+
+.seat.selected {
+  background-color: #f39c12; /* Orange for selected */
+  color: #fff;
+}
+
+.seat.reserved {
+  background-color: #7f8c8d; /* Gray for reserved */
+  color: #fff;
+  cursor: not-allowed;
+}
+
+/* Left and Right Seat Blocks */
+.seat-block {
+  display: flex;
+  gap: 8px;
+}
+
+/* Seat Aisle Styling */
+.aisle {
+  width: 15px;
+  background-color: #fff; /* White space to create the aisle */
+}
+
+/* Business and Economy Seat Borders */
+.business-seat {
+  border: 2px solid #1a237e; /* Dark blue border for business class */
+}
+
+.economy-seat {
+  border: 1px dashed #2ecc71; /* Green dashed border for economy class */
+}
+
+/* Seat Legend */
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Summary section */
+.summary {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Confirm Button */
+.confirm-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Divider after row 12 */
+.row-divider {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a237e;
+  border-top: 2px solid #1a237e;
+  padding-top: 10px;
+}
+
+.row-divider span {
+  background-color: #fff;
+  padding: 0 10px;
+}

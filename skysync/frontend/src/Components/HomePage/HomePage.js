@@ -23,6 +23,7 @@ function HomePage() {
 
 
 
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,6 +44,8 @@ function HomePage() {
         passengers 
       }
     });
+    
+   
   };
 
   return (
@@ -52,9 +55,11 @@ function HomePage() {
       <main className="homepage-main-content">
         <h2 className='line'>Elevate Your Travel Experience with SkySync!</h2> 
         <div className="homepage-booking-form">
+
           <div className="homepage-tabs">
-            <button className="homepage-tab active">Book a flight</button>
+            <button className="homepage-tab active"  >Book a flight</button>
           </div>
+
           <form className="homepage-form" onSubmit={handleSubmit}>
             <div className="homepage-form-group">
               <label>From</label>

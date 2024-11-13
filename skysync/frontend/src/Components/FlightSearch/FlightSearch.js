@@ -4,14 +4,35 @@ import { useLocation } from 'react-router-dom';
 import styles from './FlightSearch.module.css'; // Import the CSS module
 //import luggage from './image.png'; 
 import Navbar from '../Navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 function FlightSearch() { 
   const location = useLocation();
   const [flights, setFlights] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Retrieve search parameters from the location state
-  const { from, to, departureDate, returnDate, passengers } = location.state || {};
+  const { from, to, departureDate, returnDate, passengers  } = location.state || {};
+
+  const handleBookNow = (flightID,DepartingTime,ArrivingTime,FlightPrice) => {
+    console.log(FlightPrice)
+    // Navigate to SeatBook page with the search and booking data
+    navigate('/SeatBookMain', {
+      state: {
+        from,
+        to,
+        departureDate,
+        returnDate,
+        passengers,
+        flightID,
+        DepartingTime,
+        ArrivingTime,
+        FlightPrice
+      }
+    });
+  }
+  
 
   useEffect(() => {
     const fetchFlights = async () => {
@@ -26,7 +47,8 @@ function FlightSearch() {
             to,
             departureDate,
             returnDate,
-            passengers,
+            passengers
+          
           }),
         });
 
@@ -84,7 +106,7 @@ function FlightSearch() {
             <div className={styles.flightDetailsRight}>
               <div className={styles.flightPrice}>
                 <h3>Rs {flight.Price}</h3>
-                <button className={styles.bookButton}>Book Flight</button>
+                <button className={styles.bookButton} onClick={() => handleBookNow(flight.FlightCode,flight.DepartingTime,flight.ArrivingTime,flight.Price)} >Book Flight</button>
               </div>
             </div>
           </div>

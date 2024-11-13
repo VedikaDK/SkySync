@@ -3,6 +3,11 @@ const router = express.Router();
 const User = require('../model/User') ;
 const bcrypt = require('bcrypt');
 
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+// Global variable to track logged-in user
+let loggedInUser = null;
+
 
 
 router.post('/signup',async(req,res)=>{
@@ -64,6 +69,10 @@ router.post('/login', async (req, res) => {
 
     // Log: Searching for user in database
     console.log(`Checking database for user with email: ${email}`);
+    // Check if there's already a user logged in
+    if (loggedInUser) {
+      return res.status(403).json({ message: 'Another user is already logged in. Please wait until they log out.' });
+  }
 
     // Find the user by email
     const user = await User.findOne({ email });
@@ -82,6 +91,14 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
+      // Generate JWT token
+      const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
+        expiresIn: '1h',
+    });
+    // Mark the user as logged in
+    loggedInUser = user.email;
+
+   
     console.log("Password is valid. Login successful");
 
     // Successful login
@@ -91,4 +108,59 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+// Logout route
+router.post('/logout', (req, res) => {
+  if (!loggedInUser) {
+      return res.status(400).json({ message: 'No user is currently logged in.' });
+  }
+
+  // Clear the current logged-in user
+  loggedInUser = null;
+  res.status(200).json({ message: 'Logout successful' });
+});
+
+// Protected route example (require JWT)
+const verifyToken = (req, res, next) => {
+  const token = req.headers['authorization'];
+  if (!token) {
+      return res.status(403).json({ message: 'No token provided' });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+          return res.status(500).json({ message: 'Failed to authenticate token' });
+      }
+
+      req.userId = decoded.id;
+      next();
+  });
+};
+
+
+//This is the route to get details of loggedInUSer
+// router.get('/api/user/:firebaseUid', async (req, res) => {
+//   console.log("Received firebaseUid:", req.params.firebaseUid);
+//   try {
+//        //const user = await User.findOne({ firebaseUid: req.params.firebaseUid }).select('-password');
+       
+//       const user = await User.findOne({ firebaseUid: "1aHdHfd6dOhUx0bImdrwFe4mgeO2" }).select('-password');
+//       console.log("Static query result:", user); // Log the result
+
+//       if (user) {
+//           res.json(user);
+//       } else {
+//           res.status(404).json({ message: 'User not found' });
+//       }
+//   } catch (error) {
+//     console.error('Error fetching user data:', error);
+//       res.status(500).json({ message: 'Error fetching user data' });
+//   }
+// });
+
+
+
+
+
+
+
 module.exports = router;
