@@ -36,12 +36,12 @@
   line-height: 45px;
   border-radius: 6px;
   cursor: pointer;
-  background-color: #d0e2ea; /* Sky blue background for all seats */
+  background-color: #9ec1d1; /* Sky blue background for all seats */
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 /* Available, Selected, and Reserved Seat States */
-.seat.available {
+.seat.Seat-Count {
   color: #000;
 }
 

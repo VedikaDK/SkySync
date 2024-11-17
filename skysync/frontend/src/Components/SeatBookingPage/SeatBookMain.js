@@ -88,12 +88,7 @@ const SeatBookMain = () => {
                     Departure: {departureDate} | Return: {returnDate}
                     </p>
                     <p className="baggage">Check-in: 15KG | Hand: Up to 7KG</p>
-                    <p className="FlightID">FlightId : {flightID}
-                      DepartingTime:{DepartingTime}
-                      ArrivingTime:{ArrivingTime}
-                      
-                    </p>
-                    <p>Price:{FlightPrice}</p>
+              
                     </div>
                 </div>
             </div>
