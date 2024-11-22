@@ -1,0 +1,80 @@
+/* General styling */
+.CustomerFeedback {
+    background-color: #888;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('CusFee1.jpg');
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #fff; /* Optional: Adjust text color for better contrast */
+}
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #f1f1f1;
+    margin-top: 3%; /* Responsive top margin */
+}
+
+.feedback-entry {
+    background-color: rgba(250, 250, 250, 0.7); /* Light color with 80% opacity */
+    border: 0.2% solid rgba(221, 221, 221, 0.5); /* Border with some transparency */
+    border-radius: 2%;
+    margin: 2% auto; /* Vertical margin of 2% */
+    padding: 1%;
+    transition: transform 0.3s ease-in-out;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow for depth */
+}
+
+.feedback-entry:hover {
+    transform: scale(1.02);
+}
+
+.feedback-entry h3 {
+    font-size: 1.7rem;
+    color: #4a90e2;
+    margin-bottom: 4%;
+    margin-left: 4%;
+}
+
+.feedback-entry p {
+    font-size: 1.2rem;
+    color: #000000;
+    margin-bottom: 5%;
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    margin-top: 1%;
+}
+
+.star-rating {
+    display: flex;
+    margin-right: 2%;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #ddd; /* Unfilled star color */
+    margin-right: 0.5%;
+}
+
+.star.filled {
+    color: #ffff07; /* Filled star color (gold) */
+}
+
+.rating-text {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Styling for "No feedbacks available" message */
+p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin: 5% 0; /* Vertical margin for spacing */
+}

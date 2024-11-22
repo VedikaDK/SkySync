@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css'; // Import the CSS file
 
+
 const Footer = () => {
     return (
         <footer className="footer-container">
@@ -8,9 +9,10 @@ const Footer = () => {
             
             <ul className="footer-nav">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="/About">About</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Contact</a></li>
+                <li><a href="Feedback">Feedback</a></li>
             </ul>
 
             <div className="footer-social">

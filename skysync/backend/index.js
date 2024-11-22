@@ -17,6 +17,8 @@ app.use(express.json()); // Add this line to parse JSON requests
 const UserRoute = require("./Routes/CreateUser");
 const FlightRoute = require("./Routes/FlightRoute"); 
 const FlightSchedule = require("./Routes/FlightScheduleRoutes");
+const Feedback = require("./Routes/FeedbackRoutes");
+const Payment = require("./Routes/Payments_routes");
 
 mongoose.connect(process.env.URI).
 then(()=>{
@@ -33,6 +35,8 @@ then(()=>{
 app.use(UserRoute);
 app.use('/api', FlightRoute);
 app.use('/api',FlightSchedule);
+app.use('/api/feedback',Feedback);
+app.use('/api',Payment);
 
 
 

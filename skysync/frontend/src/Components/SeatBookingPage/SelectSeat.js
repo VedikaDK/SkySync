@@ -174,29 +174,34 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
 
 
 
-
- ///To toggle between the seats
   const toggleSeatSelection = (seatId) => {
-    if (reservedSeats.includes(seatId)) return;
+    if (reservedSeats.includes(seatId)) return; // Prevent actions on reserved seats
   
     // Toggle the seat status
     setSelectedSeats((prevSelected) => {
-      const updatedSelectedSeats = prevSelected.includes(seatId)
-        ? prevSelected.filter((seat) => seat !== seatId)
-        : [...prevSelected, seatId];
+      const isSelected = prevSelected.includes(seatId);
   
-      // Update the status in SeatArray
+      const updatedSelectedSeats = isSelected
+        ? prevSelected.filter((seat) => seat !== seatId) // Deselect the seat
+        : [...prevSelected, seatId]; // Select the seat
+  
+      // Update the seat map to reflect the current selection state
       setSeatMapData((prevSeatMapData) =>
-        prevSeatMapData.map((seat) =>
-          seat.SeatNumber === seatId
-            ? { ...seat, Status: updatedSelectedSeats.includes(seatId) ? seatStatuses.SELECTED : seat.Status }
-            : seat
-        )
+        prevSeatMapData.map((seat) => {
+          if (seat.SeatNumber === seatId) {
+            return {
+              ...seat,
+              Status: isSelected ? seatStatuses.AVAILABLE : seatStatuses.SELECTED, // Set to AVAILABLE when deselected
+            };
+          }
+          return seat;
+        })
       );
   
-      return updatedSelectedSeats;
+      return updatedSelectedSeats; // Return the updated selected seats
     });
   };
+  
 
 
 

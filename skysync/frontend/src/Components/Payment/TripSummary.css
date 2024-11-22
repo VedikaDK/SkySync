@@ -1,0 +1,57 @@
+.trip-summary-container {
+    background: #f8fbfd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .summary-section {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .flight-info p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .passenger-info p {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  /* Styles for the total fare section */
+#fare-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px; /* Adjust spacing as needed */
+}
+
+#fare {
+  background-color: #e0f7fa; /* Pastel blue background */
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px 20px;
+  border-radius: 8px;
+  width: 90%;
+}
+
+#price {
+  background-color: #ffffff; /* White background */
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px;
+  margin-top: 5px;
+  border-radius: 8px;
+  width: 90%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+  

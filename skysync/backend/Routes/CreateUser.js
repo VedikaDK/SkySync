@@ -9,7 +9,7 @@ require('dotenv').config();
 let loggedInUser = null;
 
 
-
+//Route to Signup
 router.post('/signup',async(req,res)=>{
     console.log("Received data:", req.body);
     try{
@@ -54,6 +54,9 @@ router.post('/signup',async(req,res)=>{
 
     }
 });
+
+
+
 
 // Login route for Firebase email/password or Google sign-in
 router.post('/login', async (req, res) => {
@@ -108,6 +111,14 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+
+
+
+
+
+
 // Logout route
 router.post('/logout', (req, res) => {
   if (!loggedInUser) {
@@ -118,6 +129,9 @@ router.post('/logout', (req, res) => {
   loggedInUser = null;
   res.status(200).json({ message: 'Logout successful' });
 });
+
+
+
 
 // Protected route example (require JWT)
 const verifyToken = (req, res, next) => {
@@ -157,7 +171,32 @@ const verifyToken = (req, res, next) => {
 //   }
 // });
 
+// Route to fetch user details
+router.get('/userdetails', async (req, res) => {
+  try {
+    // Assuming a logged-in user's email or ID is available (e.g., through JWT)
+    const email = req.query.email; // Use a query parameter to fetch specific user details
+    if (!email) {
+      return res.status(400).json({ error: 'Email query parameter is required' });
+    }
 
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json({
+      firstname: user.firstname,
+      lastname: user.lastname,
+      email: user.email,
+      phone: user.contact,
+    });
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
 

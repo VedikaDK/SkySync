@@ -1,0 +1,203 @@
+/* General container for the feedback page */
+.feedbackPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, #f5f5f5, #ffffff);
+    min-height: 100vh; /* Ensure the page takes full height */
+    width: 100%; /* Full width of the viewport */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative; /* Ensure content stays in the flow */
+    background: linear-gradient(135deg, #e8f7ff, #d4e8f7);
+    background-image: url('./Feedbackimg6.jpg');
+    /* Subtle gradient background */
+    background-size: cover; /* Ensure the image covers the page */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Fixed background */
+
+
+
+}
+.navbar{
+    
+}
+
+
+/* Overlay styling for the feedback page */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);    
+}
+
+.headingContainer h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    color: #f1eded;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+/* Heading container */
+
+/* Form styles */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Consistent spacing between elements */
+    width: 50%; /* Slightly reduced for a balanced layout */
+    margin: 2rem auto; /* Center the form horizontally */
+    padding: 2rem; /* Add space inside the form */
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
+    border-radius: 12px; /* Rounded corners for a modern look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover */
+}
+.form:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Elevated shadow on hover */
+}
+
+
+/* Line container for grouped fields */
+.lineContainer {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Form group */
+.formGroup {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #020202;
+}
+
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #3d3c3c;
+    background-color: #bbbbbb;
+    transition: border 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+    border: 1px solid #007bff;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Textarea specific styles */
+textarea {
+    resize: vertical;
+    font-family: 'Arial', sans-serif;
+}
+.formGroup p {
+    color: #0c0c0c; /* Choose your desired color */
+    font-size: 1rem; /* Adjust the size if needed */
+    font-weight: bold; /* Make the text bold, if desired */
+    margin-top: 0.5rem; /* Add some spacing above the text */
+}
+
+/* Star Rating styles */
+.starRating {
+    display: flex;
+    gap: 0.3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fcf3f3;
+}
+
+.star {
+    transition: color 0.2s ease-in-out;
+}
+
+.star:hover,
+.selectedStar {
+    color: #ffbf00;
+}
+
+/* Button container */
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 1.5rem; /* Space between buttons */
+    margin-top: 1.5rem;
+    width: 40%; /* Ensure it takes up the full width of its container */
+    align-items: center; /* Center the buttons horizontally */
+    margin-left: 30%;
+}
+
+
+/* Buttons */
+.submitButton,
+.viewFeedbackButton {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  
+}
+
+.submitButton {
+    background-color: #383838;
+}
+
+.submitButton:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+    transform: translateY(-3px); /* Slight lift effect */
+}
+
+.viewFeedbackButton {
+    background-color: #5f5d5d;
+}
+
+.viewFeedbackButton:hover {
+    background-color: #1e7e34;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+    transform: translateY(-3px); /* Slight lift effect */
+
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .lineContainer {
+        flex-direction: column;
+    }
+
+    .buttonContainer {
+        flex-direction: column;
+    }
+
+    .buttonContainer button {
+        margin-top: 0.5rem;
+    }
+}

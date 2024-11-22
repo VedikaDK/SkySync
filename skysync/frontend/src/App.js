@@ -11,7 +11,10 @@ import SeatBook from './Components/SeatBookingPage/SeatBook.js';
 import SelectSeat from './Components/SeatBookingPage/SelectSeat.js';
 import { UserAuthContextProvider } from './context/UserAuthContext';
 import SeatBookMain from './Components/SeatBookingPage/SeatBookMain.js';
-
+import Feedback from './Components/Feedback/FeedbackForm.js';
+import CustomerFeedbacks from './Components/CustomerFeedback/CustomerFeedbacks.js';
+import TripSummary from './Components/Payment/TripSummary.js';
+import PaymentGateway from './Components/Payment/PaymentGateway.js';
 
 
 function App() {
@@ -27,6 +30,10 @@ function App() {
        <Route path="/SeatBookMain" element={<SeatBookMain/>}/>
        <Route path="/SeatBook" element={<SeatBook />}/> 
        <Route path="/SelectSeat" element={<SelectSeat />}/> 
+       <Route path="/Feedback" element={<Feedback/>}/>
+       <Route path="/CustomerFeedbacks" element={<CustomerFeedbacks/>}/>
+       <Route path="/TripSummary" element={<TripSummary/>}/>
+       <Route path="/PaymentGateway" element={<PaymentGateway/>}/>
         {/* Add more routes here as needed */}
       </Routes>
     </Router>

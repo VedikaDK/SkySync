@@ -6,13 +6,18 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import SeatBook from './SeatBook';
 import SelectSeat from './SelectSeat';
+import TripSummary from '../Payment/TripSummary';
 import { useLocation } from 'react-router-dom';
+import { onPayment } from '../Payment/PaymentGateway';
 
 import './SeatBook.css';
 
 
 const SeatBookMain = () => {
+
+
     const [step, setStep] = useState(0); // Track the current step
+    const [reservedSeatNumbers, setReservedSeats] = useState(0); 
     
   const location = useLocation();
   const { from, to, departureDate, returnDate, passengers ,flightID ,DepartingTime,ArrivingTime, FlightPrice } = location.state || {};// Default to empty object if no state is passed
@@ -27,6 +32,34 @@ const SeatBookMain = () => {
       // Additional actions (e.g., redirect, confirmation message)
     };
 
+  
+    const fetchReservedSeats = async (flightID, date) => {
+      console.log("In reserved seat array function flightID:", flightID, "date:", date);
+      try {
+          const response = await fetch("http://localhost:5000/api/reserved-seats", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ flightID, date }),
+          });
+          if (!response.ok) {
+              throw new Error("Failed to fetch reserved seats");
+          }
+          const data = await response.json();
+          // Extract seat numbers from the response
+          const reservedSeatNumbers = data.reservedSeats.map(seat => seat.seatNumber);
+          console.log("Reserved seat array : ", reservedSeatNumbers);
+          // Update state with the extracted seat numbers
+          setReservedSeats(reservedSeatNumbers);
+      } catch (error) {
+          console.error("Error fetching reserved seats:", error.message);
+      }
+  };
+  
+
+
+
      // Render the current step's content
   const renderStepContent = () => {
     switch (step) {
@@ -35,8 +68,9 @@ const SeatBookMain = () => {
       case 1:
           // Pass flightID and departureDate as props to SelectSeat
           return <SelectSeat onNext={goToNextStep} flightID={flightID} date={departureDate}  departingTime={DepartingTime} arrivingTime={ArrivingTime} FlightPrice={FlightPrice}/>;
-    //   case 2:
-    //     return <PaymentDetails onComplete={completeBooking} />;
+     case 2:
+     // fetchReservedSeats(flightID,departureDate);
+      return <TripSummary  />;
       default:
         return null;
     }
@@ -50,6 +84,8 @@ const SeatBookMain = () => {
      console.log('Booking complete!');
    }
  };
+
+
   return (
     <div className='seatpage'>
       <div className='navbar-container'>

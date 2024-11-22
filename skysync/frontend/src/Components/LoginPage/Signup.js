@@ -66,6 +66,7 @@ const Signup = () => {
     <div className="signuppage">
    <div className='signupc'> 
       <div className="signupcontainer">
+        
         <h2 className="mb-3">Signup</h2>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
@@ -141,6 +142,7 @@ const Signup = () => {
           </div>
         </Form>
       </div>
+
 
       <div className="infocontainer">
           <h2 className="Welcome"> " Welcome "</h2>

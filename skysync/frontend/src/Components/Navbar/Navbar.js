@@ -19,42 +19,43 @@ const Navbar = () => {
     setIsLoggedIn(loggedIn);
   }, []);
 
-//  // Handle button click based on login status
-//  const handleAuthClick = () => {
+// const handleAuthClick = async () => {
 //   if (isLoggedIn) {
-//     // Perform logout
-//     localStorage.removeItem('isLoggedIn');
-//     setIsLoggedIn(false);
-//     alert('Logged out successfully');
+//       // Perform logout
+//       localStorage.removeItem('isLoggedIn');
+//       localStorage.removeItem('firebaseUid'); // Clear UID on logout
+//       setIsLoggedIn(false);
+//       alert('Logged out successfully');
 //   } else {
-//     // Simulate login process
-//     localStorage.setItem('isLoggedIn', 'true'); // Set login state in local storage
-//     setIsLoggedIn(true); // Update state to logged in
-//     // Navigate to login page
-//     navigate('/Main');
+//       // Simulate login process
+//       // Replace the following with your actual Firebase login logic to get the UID
+//       const uid = await loginUser(); // Assume loginUser() returns the logged-in user's UID
+
+//       if (uid) {
+//           localStorage.setItem('isLoggedIn', 'true'); // Set login state in local storage
+//           localStorage.setItem('firebaseUid', uid); // Store the Firebase UID
+//           setIsLoggedIn(true); // Update state to logged in
+//           // Navigate to main page or wherever needed
+//           navigate('/Main');
+//       }
 //   }
 // };
-const handleAuthClick = async () => {
-  if (isLoggedIn) {
-      // Perform logout
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('firebaseUid'); // Clear UID on logout
-      setIsLoggedIn(false);
-      alert('Logged out successfully');
-  } else {
-      // Simulate login process
-      // Replace the following with your actual Firebase login logic to get the UID
-      const uid = await loginUser(); // Assume loginUser() returns the logged-in user's UID
 
-      if (uid) {
-          localStorage.setItem('isLoggedIn', 'true'); // Set login state in local storage
-          localStorage.setItem('firebaseUid', uid); // Store the Firebase UID
-          setIsLoggedIn(true); // Update state to logged in
-          // Navigate to main page or wherever needed
-          navigate('/Main');
-      }
+ // Handle button click based on login status
+ const handleAuthClick = () => {
+  if (isLoggedIn) {
+    // Perform logout
+    localStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(false);
+    alert('Logged out successfully');
+  } else {
+    // Simulate login and set isLoggedIn to true
+    localStorage.setItem('isLoggedIn', 'true'); // Simulate successful login
+    setIsLoggedIn(true);
+    navigate('/Main');
   }
 };
+
 
   return (
     <header className="navbar-header">

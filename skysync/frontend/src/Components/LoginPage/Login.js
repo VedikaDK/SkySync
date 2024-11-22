@@ -16,12 +16,35 @@ const Login = () => {
   const navigate = useNavigate();
   const [phoneSignup, setPhoneSignup] = useState(false);// functionlity check
 
+
+
+
     const handleSubmit = async (e) => {
       e.preventDefault();
       setError("");
       try {
         // Firebase Email/Password Authentication
         const userCredential = await logIn(email, password);
+
+
+
+
+
+    // Storing email and other user details in localStorage
+    localStorage.setItem("email", email);  // Store email in localStorage
+    localStorage.setItem("loginDetails", JSON.stringify({
+      firstname: userCredential.user.displayName || "",
+      email: email,
+      phone: userCredential.user.phoneNumber || "",
+    }));
+
+
+
+
+
+
+
+
   
         // Check MongoDB for the user after Firebase Authentication
         const response = await fetch("http://localhost:5000/login", {
@@ -46,6 +69,15 @@ const handleGoogleSignIn = async (e) => {
   e.preventDefault();
   try {
     const userCredential = await googleSignIn();
+
+    // Storing email and other user details in localStorage
+    localStorage.setItem("email", userCredential.user.email);
+    localStorage.setItem("loginDetails", JSON.stringify({
+      firstname: userCredential.user.displayName || "",
+      email: userCredential.user.email,
+      phone: userCredential.user.phoneNumber || "",
+    }));
+
 
     // After Google Sign-In, check MongoDB for user existence
     const response = await fetch("http://localhost:5000/login", {
