@@ -3,16 +3,19 @@ import './BookingFrom.css';
 
 const BookingForm = ({ SelectedSeatData }) => {
     const [seatInfo, setSeatInfo] = useState([]);
-
+console.log("Data in Booking form ", SelectedSeatData)
+    // Logging the initial data received
     useEffect(() => {
-        if (SelectedSeatData && SelectedSeatData.length > 1) {
-            const initialSeats = SelectedSeatData.slice(1).map((seat) => ({
+        console.log('SelectedSeatData:', SelectedSeatData);
+        if (SelectedSeatData && SelectedSeatData.selectedSeats && SelectedSeatData.selectedSeats.length > 0) {
+            const initialSeats = SelectedSeatData.selectedSeats.map((seat) => ({
                 seatNumber: seat,
                 name: '',
                 age: '',
                 gender: '',
             }));
             setSeatInfo(initialSeats);
+            console.log('Initial seatInfo:', initialSeats);
         }
     }, [SelectedSeatData]);
 
@@ -21,8 +24,10 @@ const BookingForm = ({ SelectedSeatData }) => {
         const updatedSeats = [...seatInfo];
         updatedSeats[index][name] = value;
         setSeatInfo(updatedSeats);
+        console.log(`Updated seatInfo[${index}]:`, updatedSeats[index]); // Log each change
     };
-   return (
+
+    return (
         <div className="booking-form-container">
             <h2>Passenger Details</h2>
             {seatInfo.length === 0 ? (

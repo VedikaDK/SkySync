@@ -87,6 +87,7 @@ const SeatBookMain = () => {
      return <BookingForm    onNext={goToNextStep} SelectedSeatData={SelectedSeatData} />;
       
      case 3:
+      // 
       return <TripSummary  />;
       default:
         return null;
