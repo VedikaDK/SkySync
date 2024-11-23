@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 import SeatBook from './SeatBook';
 import SelectSeat from './SelectSeat';
 import TripSummary from '../Payment/TripSummary';
+import BookingForm from '../SeatBookingPage/BookingForm';
 import { useLocation } from 'react-router-dom';
 import { onPayment } from '../Payment/PaymentGateway';
 
@@ -18,12 +19,15 @@ const SeatBookMain = () => {
 
     const [step, setStep] = useState(0); // Track the current step
     const [reservedSeatNumbers, setReservedSeats] = useState(0); 
+
+    const [SelectedSeatData,setSelectedData] = useState([]);
+
     
   const location = useLocation();
   const { from, to, departureDate, returnDate, passengers ,flightID ,DepartingTime,ArrivingTime, FlightPrice } = location.state || {};// Default to empty object if no state is passed
- // State to manage progress step
- console.log(location.state);
- console.log('Received FlightPrice:', FlightPrice);
+    // State to manage progress step
+    console.log(location.state);
+    console.log('Received FlightPrice:', FlightPrice);
   
     // Step handlers
     const goToNextStep = () => setStep(prev => prev + 1);
@@ -56,7 +60,14 @@ const SeatBookMain = () => {
           console.error("Error fetching reserved seats:", error.message);
       }
   };
-  
+
+
+
+  const handleBookingData = (data) => {
+    setSelectedData(data); // Set the data received from the child component
+    console.log(" Seat Booking confirmed with data:", data);
+  };
+
 
 
 
@@ -67,9 +78,15 @@ const SeatBookMain = () => {
         return <SeatBook onNext={goToNextStep} />;
       case 1:
           // Pass flightID and departureDate as props to SelectSeat
-          return <SelectSeat onNext={goToNextStep} flightID={flightID} date={departureDate}  departingTime={DepartingTime} arrivingTime={ArrivingTime} FlightPrice={FlightPrice}/>;
+          return <SelectSeat onNext={goToNextStep} flightID={flightID} date={departureDate}  departingTime={DepartingTime} arrivingTime={ArrivingTime} FlightPrice={FlightPrice}  onBookingConfirm={handleBookingData}  />;
+        
      case 2:
+      
      // fetchReservedSeats(flightID,departureDate);
+     console.log("Sending Data to Booking form : ",SelectedSeatData);
+     return <BookingForm    onNext={goToNextStep} SelectedSeatData={SelectedSeatData} />;
+      
+     case 3:
       return <TripSummary  />;
       default:
         return null;

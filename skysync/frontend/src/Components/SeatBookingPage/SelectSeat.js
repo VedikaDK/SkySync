@@ -12,22 +12,23 @@ const seatStatuses = {
   SELECTED: 'selected',
 };
 
-function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
+function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice ,onBookingConfirm }) {
+
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [reservedSeats, setReservedSeats] = useState([]);
   const [seatMapData, setSeatMapData] = useState([]);
+
+
+ //array to hold reserved seats IDs from database 
+  const [reservedSeats, setReservedSeats] = useState([]);
+  //array to hold available seats which is (avaibale - reserved)
   const [availableSeatCount, setAvailableSeatCount] = useState(0);
+  //To  hold count to reserved seats
   const [reservedSeatsCount, setReservedSeatsCount] = useState(0); 
  
+  //To hold Recent Selected Seat by user 
+  const [RecentSelected , setrecentselected] = useState([]);
   
-
-
-
-
-
-
   useEffect(() => {
-
 
   //Generate SeatArray
     const generateSeatArray = () => {
@@ -60,9 +61,10 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
   
     
     // Set the generated SeatArray
-  const initialSeatArray = generateSeatArray();
+    const initialSeatArray = generateSeatArray();
     setSeatMapData(initialSeatArray);
    
+
 
     // Call function to get available seat count
     const fetchAvailableSeatsCount = async () => {
@@ -73,9 +75,6 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
 
 
 
-
-
-
     // Call function to get reserved seat count
     const fetchReservedSeatsCount = async () => {
       const count = await getReservedSeatsCount(flightID, date);
@@ -83,6 +82,7 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
       
     };
 
+    //TO fetch the reserved seats the seats that are marked reserved into database
     const fetchReservedSeats = async (flightID, date) => {
       console.log("In reserved seat array function flightID:", flightID, "date:", date);
       try {
@@ -105,22 +105,51 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
       } catch (error) {
           console.error("Error fetching reserved seats:", error.message);
       }
-  };
-  
+  }; 
 
 
-
-
-     
-    if (flightID && date) {
-      fetchReservedSeatsCount();
-      fetchAvailableSeatsCount();
-      fetchReservedSeats(flightID,date);
+  //function to get selected seat that has been marked as selected into db
+  const fetchSelectedSeats = async (flightID, date) => {
+    console.log("In reserved seat array function flightID:", flightID, "date:", date);
+    try {
+        const response = await fetch("http://localhost:5000/api/selected-seats", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ flightID, date }),
+        });
+        if (!response.ok) {
+            throw new Error("Failed to fetch selected  seats");
+        }
+        const data = await response.json();
+        // Extract seat numbers from the response
+        const SelectedSeatNumbers = data.RecentSelected.map(seat => seat.seatNumber);
+        console.log("Selected seat array : ", SelectedSeatNumbers);
+        // Update state with the extracted seat numbers
+        setrecentselected(SelectedSeatNumbers);
+    } catch (error) {
+        console.error("Error fetching Selected seats:", error.message);
     }
+}; 
+ 
+
+if (flightID && date) {
+  fetchReservedSeatsCount();
+  fetchAvailableSeatsCount();
+  fetchReservedSeats(flightID,date);
+  fetchSelectedSeats(flightID,date);
+}
   }, [flightID, date]); // Run the effect whenever flightID or date changes
   
 
- 
+
+  
+
+
+
+
+
 
 
 
@@ -160,9 +189,6 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
     console.log("Updated reserved seat count:", reservedSeatsCount);
   }, [reservedSeatsCount]); // Runs when reservedSeatsCount changes
 
-
-
-
   //Calculate total no of seats
   const calculateTotalSeats = () => {
     const businessSeats = businessClassRows * 4; // 4 seats per row in business class
@@ -171,10 +197,102 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
   };
 
 
+//To count the no of reserved seats from database
+const getReservedSeatsCount = async (flightID, date) => {
+  console.log("Sending date to server:", date); // Log the date format
+  console.log("Inside getReservedSeatsCount - flightID:", flightID, "date:", date);
+
+  try {
+    const response = await fetch("http://localhost:5000/api/reserved-seats-count", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ flightID, date }),
+    });
+
+    console.log("Response Status Code:", response.status); // Log response status
+
+    if (!response.ok) {
+      const errorText = await response.text();  // Capture error text from response
+      console.error("Error Response Body:", errorText);  // Log error response body
+      throw new Error(`Failed to fetch reserved seats count. Status: ${response.status}, Response: ${errorText}`);
+    }
+
+    const data = await response.json();
+    console.log("Server response data:", data);  // Log the full response data
+
+    // Ensure the response contains the expected data structure
+    if (data.reservedSeatsCount !== undefined) {
+      return data.reservedSeatsCount;
+    } else {
+      throw new Error("Reserved seats count not found in response");
+    }
+  } catch (error) {
+    console.error("Error in getReservedSeatsCount:", error);  // Log any errors
+    return 0;  // Return 0 as fallback if there is an error
+  }
+};
+
+
+  //to get the count of  avaiable seat
+      const getAvailableSeatsCount = async (flightID, date ) => {
+        const totalSeats = calculateTotalSeats();
+        console.log("Total seats : ", totalSeats);
+        
+            
+        console.log("Inside getAvailableSeatsCount - flightID:", flightID, "date:", date);
+        
+            
+            try {
+              // Send a POST request to the backend with the flightID and date
+              const response = await fetch("http://localhost:5000/api/available-seats", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ flightID, date , totalSeats }), // Convert requestData to JSON string
+              });
+    
+              // Check if the response was successful
+              if (response.ok) {
+                const data = await response.json();
+                console.log("Received available count =", data.availableSeatsCount); // Log here
+                return data.availableSeatsCount;
+              } else {
+                console.error("Failed to fetch available seats.");
+              }
+            } catch (error) {
+              console.error("Error fetching available seats:", error);
+            }
+          };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
   const toggleSeatSelection = (seatId) => {
+
     if (reservedSeats.includes(seatId)) return; // Prevent actions on reserved seats
   
     // Toggle the seat status
@@ -191,7 +309,7 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
           if (seat.SeatNumber === seatId) {
             return {
               ...seat,
-              Status: isSelected ? seatStatuses.AVAILABLE : seatStatuses.SELECTED, // Set to AVAILABLE when deselected
+              Status: isSelected ? seatStatuses.AVAILABLE : seatStatuses.SELECTED , // Set to AVAILABLE when deselected
             };
           }
           return seat;
@@ -202,89 +320,6 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
     });
   };
   
-
-
-
-
-//To count the no of reserved seats
-  const getReservedSeatsCount = async (flightID, date) => {
-    console.log("Sending date to server:", date); // Log the date format
-    console.log("Inside getReservedSeatsCount - flightID:", flightID, "date:", date);
-
-    try {
-      const response = await fetch("http://localhost:5000/api/reserved-seats-count", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ flightID, date }),
-      });
-  
-      console.log("Response Status Code:", response.status); // Log response status
-  
-      if (!response.ok) {
-        const errorText = await response.text();  // Capture error text from response
-        console.error("Error Response Body:", errorText);  // Log error response body
-        throw new Error(`Failed to fetch reserved seats count. Status: ${response.status}, Response: ${errorText}`);
-      }
-  
-      const data = await response.json();
-      console.log("Server response data:", data);  // Log the full response data
-  
-      // Ensure the response contains the expected data structure
-      if (data.reservedSeatsCount !== undefined) {
-        return data.reservedSeatsCount;
-      } else {
-        throw new Error("Reserved seats count not found in response");
-      }
-    } catch (error) {
-      console.error("Error in getReservedSeatsCount:", error);  // Log any errors
-      return 0;  // Return 0 as fallback if there is an error
-    }
-  };
-
- 
-
-      //to get the count of  avaiable seat
-  const getAvailableSeatsCount = async (flightID, date ) => {
-    const totalSeats = calculateTotalSeats();
-    console.log("Total seats : ", totalSeats);
-    
-        
-    console.log("Inside getAvailableSeatsCount - flightID:", flightID, "date:", date);
-    
-        
-        try {
-          // Send a POST request to the backend with the flightID and date
-          const response = await fetch("http://localhost:5000/api/available-seats", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ flightID, date , totalSeats }), // Convert requestData to JSON string
-          });
-
-          // Check if the response was successful
-          if (response.ok) {
-            const data = await response.json();
-            console.log("Received available count =", data.availableSeatsCount); // Log here
-            return data.availableSeatsCount;
-          } else {
-            console.error("Failed to fetch available seats.");
-          }
-        } catch (error) {
-          console.error("Error fetching available seats:", error);
-        }
-      };
-
-
-     
-  
-  
-  
-  
-
-
 
   const confirmBooking = async () => {
     if (selectedSeats.length === 0) {
@@ -298,7 +333,7 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
         date: date,
         SeatAvailability: selectedSeats.map(seatId => ({
           seatNumber: seatId,
-          status: seatStatuses.RESERVED.toLowerCase() // Ensure the status matches the server's expected format (e.g., "reserved").
+          status: seatStatuses.SELECTED.toLowerCase() // Ensure the status matches the server's expected format (e.g., "reserved").
         })),
         FlightPrice,
         DepartingTime: departingTime,
@@ -316,14 +351,18 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
         body: JSON.stringify(requestBody),
       });
       const data = await response.json();
-  
+      console.log("Data sent to  Booking Form Page :" );
+
       if (response.ok) {
+        onBookingConfirm({
+          selectedSeats,
+        });
         // Update reservedSeats and SeatArray to reflect the reserved seats
-        setReservedSeats([...reservedSeats, ...selectedSeats]);
+        setrecentselected([...reservedSeats, ...selectedSeats]);
         setSeatMapData((prevSeatMapData) =>
           prevSeatMapData.map((seat) =>
             selectedSeats.includes(seat.SeatNumber)
-              ? { ...seat, Status: seatStatuses.RESERVED }
+              ? { ...seat, Status: seatStatuses.SELECTED }
               : seat
           )
         );
@@ -338,20 +377,6 @@ function SelectSeat({ flightID, date ,departingTime,arrivingTime,FlightPrice}) {
   
 
 
-//To get seat status
-  // const getSeatStatus = (seatId) => {
-  //   if (reservedSeats.includes(seatId)) return seatStatuses.RESERVED;
-  //   if (selectedSeats.includes(seatId)) return seatStatuses.SELECTED;
-
-  //   // Check if seatMapData is available and find the seat status
-  //   const seatData = seatMapData.find(seat => seat.seatId === seatId);
-  //   // if (seatData) {
-  //   //     return seatData.status === seatStatuses.RESERVED ? seatStatuses.RESERVED : seatStatuses.AVAILABLE;
-  //   // }
-  //   // // Default to available if seat data is not found
-  //   // return seatStatuses.AVAILABLE;
-  //   return seatData ? seatData.status : seatStatuses.AVAILABLE;
-  // };
 
 //Testing for get status
 const getSeatStatus = (seatId) => {
@@ -441,7 +466,7 @@ const getSeatStatus = (seatId) => {
         <p>{selectedSeats.length > 0 ? selectedSeats.join(', ') : 'No seats selected'}</p>
       </div>
       <button onClick={confirmBooking} className="confirm-button">
-        Confirm Booking
+        Confirm Selected Seat
       </button>
     </div>
   );

@@ -15,6 +15,7 @@ import Feedback from './Components/Feedback/FeedbackForm.js';
 import CustomerFeedbacks from './Components/CustomerFeedback/CustomerFeedbacks.js';
 import TripSummary from './Components/Payment/TripSummary.js';
 import PaymentGateway from './Components/Payment/PaymentGateway.js';
+import BookingForm from './Components/SeatBookingPage/BookingForm.js';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
        <Route path="/CustomerFeedbacks" element={<CustomerFeedbacks/>}/>
        <Route path="/TripSummary" element={<TripSummary/>}/>
        <Route path="/PaymentGateway" element={<PaymentGateway/>}/>
+       <Route path="/BookingForm" element={<BookingForm/>}/>
         {/* Add more routes here as needed */}
       </Routes>
     </Router>
