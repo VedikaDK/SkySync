@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AboutPage.css';
+import Footer from "../Footer/Footer";
 
 const AboutPage = () => {
     const [currentImage, setCurrentImage] = useState(0);
@@ -33,7 +34,7 @@ const AboutPage = () => {
                />
                     <nav>
                         <ul>
-                            <li>Home</li>
+                            <li><a href = './' class="nav-link">Home</a></li>
                             <li>About</li>
                             <li>Contact</li>
                         </ul>
@@ -101,7 +102,10 @@ const AboutPage = () => {
 
 
             </div>
+            <Footer/>
         </div>
+
+        
     );
 };
 

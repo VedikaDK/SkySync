@@ -43,6 +43,14 @@
     list-style: none;
 }
 
+.nav-link {
+    text-decoration: none;
+    color: white;
+  }
+  .nav-link:hover {
+    color: lightgray; /* Optional hover effect */
+  }
+
 
 .SlidePhoto {
     height: 100%; /* Fixed height */
