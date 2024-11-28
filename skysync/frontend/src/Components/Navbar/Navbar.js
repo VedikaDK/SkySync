@@ -66,7 +66,7 @@ const Navbar = () => {
         <ul>
           <li><a href="/">Home</a></li> {/* Make sure the href is correct for your routes */}
           <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contacts</a></li>
+          <li><a href="/ContactPage">Contacts</a></li>
         </ul>
       </nav>
       {/* <button id="LoginButton" className="login-btn1" onClick={handleLoginClick}>Login</button> */}

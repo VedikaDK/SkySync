@@ -19,6 +19,7 @@ const FlightRoute = require("./Routes/FlightRoute");
 const FlightSchedule = require("./Routes/FlightScheduleRoutes");
 const Feedback = require("./Routes/FeedbackRoutes");
 const Payment = require("./Routes/Payments_routes");
+const Contact = require("./Routes/contactRoutes");
 
 mongoose.connect(process.env.URI).
 then(()=>{
@@ -37,6 +38,7 @@ app.use('/api', FlightRoute);
 app.use('/api',FlightSchedule);
 app.use('/api/feedback',Feedback);
 app.use('/api',Payment);
+app.use("/api",Contact);
 
 
 
