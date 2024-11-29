@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './BookingFrom.css';
 
-const BookingForm = ({ SelectedSeatData }) => {
+const BookingForm = ({ SelectedSeatData, onDetailsChange }) => {
     const [seatInfo, setSeatInfo] = useState([]);
     console.log("Data in Booking form ", SelectedSeatData);
 
     // Logging the initial data received
     useEffect(() => {
         console.log('SelectedSeatData:', SelectedSeatData);
-        if (SelectedSeatData && SelectedSeatData.selectedSeats && SelectedSeatData.selectedSeats.length > 0) {
-            const initialSeats = SelectedSeatData.selectedSeats.map((seat) => ({
+        if (SelectedSeatData && SelectedSeatData.length > 0){
+            const initialSeats = SelectedSeatData.map((seat) => ({
                 seatNumber: seat,
                 name: '',
                 age: '',
@@ -27,6 +27,32 @@ const BookingForm = ({ SelectedSeatData }) => {
         setSeatInfo(updatedSeats);
         console.log(`Updated seatInfo[${index}]:`, updatedSeats[index]); // Log each change
     };
+
+    const handleGenderChange = (e, index) => {
+        const { value } = e.target;
+        const updatedSeats = [...seatInfo];
+        updatedSeats[index].gender = value;
+        setSeatInfo(updatedSeats);
+        console.log(`Updated gender for seat ${index}:`, updatedSeats[index].gender);
+    }
+
+     // Function to handle submitting the data and passing it to the parent
+     const handleNextStep = () => {
+        console.log('Submitting seat info to parent:', seatInfo);
+        // Call the onDetailsChange callback to pass data back to the parent
+        onDetailsChange(seatInfo);
+    };
+
+    // Function to log seatInfo to the console
+    const handlePrintToConsole = () => {
+        console.log('Passenger Details:', seatInfo);
+        onDetailsChange(seatInfo);
+    };
+
+     // Log seatInfo when it changes
+     useEffect(() => {
+        console.log('Updated seatInfo:', seatInfo);
+    }, [seatInfo]);
 
     return (
         <div className="booking-form-container">
@@ -68,8 +94,8 @@ const BookingForm = ({ SelectedSeatData }) => {
                                             type="radio"
                                             name={`gender-${index}`}
                                             value="male"
-                                            checked={seat.gender === 'male'}
-                                            onChange={(e) => handleChange(e, index)}
+                                            checked={seatInfo[index]?.gender === 'male'}
+                                            onChange={(e) => handleChange({ target: { name: 'gender', value: e.target.value } }, index)}
                                         />
                                         Male
                                     </label>
@@ -78,8 +104,8 @@ const BookingForm = ({ SelectedSeatData }) => {
                                             type="radio"
                                             name={`gender-${index}`}
                                             value="female"
-                                            checked={seat.gender === 'female'}
-                                            onChange={(e) => handleChange(e, index)}
+                                            checked={seatInfo[index]?.gender === 'female'}
+                                            onChange={(e) => handleChange({ target: { name: 'gender', value: e.target.value } }, index)}
                                         />
                                         Female
                                     </label>
@@ -88,8 +114,8 @@ const BookingForm = ({ SelectedSeatData }) => {
                                             type="radio"
                                             name={`gender-${index}`}
                                             value="other"
-                                            checked={seat.gender === 'other'}
-                                            onChange={(e) => handleChange(e, index)}
+                                            checked={seatInfo[index]?.gender === 'other'}
+                                            onChange={(e) => handleChange({ target: { name: 'gender', value: e.target.value } }, index)}
                                         />
                                         Other
                                     </label>
@@ -99,6 +125,9 @@ const BookingForm = ({ SelectedSeatData }) => {
                     ))}
                 </div>
             )}
+            <button onClick={handlePrintToConsole} className="print-button">
+                Print Details to Console
+            </button>
         </div>
     );
 };

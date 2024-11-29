@@ -6,14 +6,16 @@ import { useLocation } from 'react-router-dom';
 
 
 
-const SeatBook = () => {
+const SeatBook = ({ onDetailsChange }) => {
   const location = useLocation();
   const { from, to } = location.state || {};// Default to empty object if no state is passed
   const [formData, setFormData] = useState({
     firstname: '',
-    lastname:'',
+    lastname: '',
     email: '',
-    phone: ''
+    phone: '',
+    gender: '',
+    dob: ''
   })
 
 
@@ -78,12 +80,18 @@ useEffect(() => {
         email: data.email || '',
         phone: data.phone || '',
       }));
+      
+      onDetailsChange(data);
+      console.log("Data of user send succesfully ",data);
       alert('Login details imported successfully!');
     } catch (error) {
       console.error(error);
       alert('Failed to fetch login details.');
     }
   };
+
+
+
  
     return (
         

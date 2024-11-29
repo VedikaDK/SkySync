@@ -22,6 +22,10 @@ const SeatBookMain = () => {
 
     const [SelectedSeatData,setSelectedData] = useState([]);
 
+    const[passengersData,setPassengerDetails]=useState([]);
+
+    const[userdata,setUserDetails]=useState({ });
+
     
   const location = useLocation();
   const { from, to, departureDate, returnDate, passengers ,flightID ,DepartingTime,ArrivingTime, FlightPrice } = location.state || {};// Default to empty object if no state is passed
@@ -62,35 +66,68 @@ const SeatBookMain = () => {
   };
 
 
-
+//Call back function for selected seat data
   const handleBookingData = (data) => {
     setSelectedData(data); // Set the data received from the child component
     console.log(" Seat Booking confirmed with data:", data);
   };
 
+//call back for passsanger details
+const handleDetailsChange = (updatedDetails) => {
+  console.log('Passenger details updated:', updatedDetails);
+  // Update state or perform other actions with the updated details
+  setPassengerDetails(updatedDetails);
+};
 
-
+const handleUserDetails = (formData) => {
+  setUserDetails(formData );
+  console.log("Received User details: ", formData);
+};
 
      // Render the current step's content
   const renderStepContent = () => {
     switch (step) {
       case 0:
-        return <SeatBook onNext={goToNextStep} />;
+        return <SeatBook onNext={goToNextStep}  onDetailsChange={handleUserDetails} />;
       case 1:
           // Pass flightID and departureDate as props to SelectSeat
           return <SelectSeat onNext={goToNextStep} flightID={flightID} date={departureDate}  departingTime={DepartingTime} arrivingTime={ArrivingTime} FlightPrice={FlightPrice}  onBookingConfirm={handleBookingData}  />;
         
-     case 2:
-      
+     case 2:  
      // fetchReservedSeats(flightID,departureDate);
      console.log("Sending Data to Booking form : ",SelectedSeatData);
-     return <BookingForm    onNext={goToNextStep} SelectedSeatData={SelectedSeatData} />;
+     //I need to do a callback function here to acess the data
+     return <BookingForm    onNext={goToNextStep} SelectedSeatData={SelectedSeatData}   onDetailsChange={handleDetailsChange}/>;
       
      case 3:
-      // 
-      return <TripSummary  />;
-      default:
-        return null;
+      // Convert the object to an array of its values
+      console.log("Sending Data to Trip summary (Passanger Data)",passengersData);
+      console.log("Sending the User data to trip summary(One who is booking)",userdata);
+      let totalPrice = FlightPrice * SelectedSeatData.length;
+
+      // Loop through each selected seat and check if it starts with a letter
+        SelectedSeatData.forEach((seat) => {
+          const seatLetter = seat.charAt(0); // Get the first character of the seat number (e.g., "A" from "A1")
+          if (['1', '2', '3', '4'].includes(seatLetter)) {
+            totalPrice += 100; // Add ₹100 for seats starting with A, B, C, or D
+          }
+      })
+      // Log the length of the resulting array
+      const flightDetails = {
+        flightID: flightID,
+        deptCity: from,
+        arrCity: to,
+        date: departureDate,
+        time: DepartingTime,
+        seats: SelectedSeatData.length > 0 ? SelectedSeatData : ['No seats selected'], // Ensure valid seats
+        passengerNames: passengersData,
+        contact: userdata.phone,
+        price: totalPrice, // Calculate price dynamically
+      };
+      console.log("Length of array:", FlightPrice * SelectedSeatData.length);
+      return <TripSummary details={flightDetails} />;
+    default:
+  return null;
     }
   };
   // Function to move to the next step

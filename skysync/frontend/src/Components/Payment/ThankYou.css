@@ -1,0 +1,12 @@
+/* Corrected selectors */
+#heading {
+    color: black;
+    font-size: 40px;
+    margin-top: 25px;
+  }
+  
+  #head2 {
+    font-size: 19px;
+    margin-top: 610px;
+    color: black;
+}

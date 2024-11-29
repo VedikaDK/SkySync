@@ -17,6 +17,7 @@ import TripSummary from './Components/Payment/TripSummary.js';
 import PaymentGateway from './Components/Payment/PaymentGateway.js';
 import BookingForm from './Components/SeatBookingPage/BookingForm.js';
 import Contact from './Components/ContactPage/ContactPage.js';
+import ThankYou from './Components/Payment/ThankYou.js' 
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
        <Route path="/PaymentGateway" element={<PaymentGateway/>}/>
        <Route path="/BookingForm" element={<BookingForm/>}/>
        <Route path="/ContactPage" element={<Contact/>}/>
+       <Route path="/thank-you" element={<ThankYou/>}/>
         {/* Add more routes here as needed */}
       </Routes>
     </Router>

@@ -354,9 +354,9 @@ const getReservedSeatsCount = async (flightID, date) => {
       console.log("Data sent to  Booking Form Page :" );
 
       if (response.ok) {
-        onBookingConfirm({
+        onBookingConfirm(
           selectedSeats,
-        });
+        );
         // Update reservedSeats and SeatArray to reflect the reserved seats
         setrecentselected([...reservedSeats, ...selectedSeats]);
         setSeatMapData((prevSeatMapData) =>
