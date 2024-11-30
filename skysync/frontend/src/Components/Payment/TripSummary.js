@@ -11,7 +11,7 @@ const TripSummary = ({ details }) => {
 
   return (
     <div className="trip-summary-container">
-      <h2>Trip Summary</h2>
+      <h2 >Amount</h2>
       <div className="summary-section1">
         <div>
           {/* Pay button */}

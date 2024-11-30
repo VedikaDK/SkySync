@@ -179,16 +179,18 @@ const handleUserDetails = (formData) => {
                     Departure: {departureDate} | Return: {returnDate}
                     </p>
                     <p className="baggage">Check-in: 15KG | Hand: Up to 7KG</p>
-              
+                    <p className="Seats-Selected">Seats Selected: {SelectedSeatData.join(', ')}</p>
                     </div>
                 </div>
             </div>
         </div>
       </div>
 
-             <div>
-                <button className='NextButton' onClick={handleNextClick}>Next</button>
-             </div>
+          {step < 3 && (
+            <div>
+              <button className='NextButton' onClick={handleNextClick}>Next</button>
+            </div>
+          )}
 
       <div className='footer-container'>
         <Footer />

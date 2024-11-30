@@ -79,12 +79,15 @@
 
 /* Seat Legend */
 .seat-legend {
+  
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
+  gap: 20px;
   font-size: 14px;
   font-weight: 500;
+  width: 50%;
+  height: 10%;
+ 
 }
 
 /* Summary section */
@@ -96,9 +99,10 @@
 
 /* Confirm Button */
 .confirm-button {
+  width: 40%;
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #3498db;
+  background-color: #0b113b;
   color: #fff;
   border: none;
   border-radius: 6px;

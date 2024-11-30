@@ -224,6 +224,11 @@ input[type="date"] {
     font-size: 12px;
 }
 
+.Seats-Selected{
+    color: #666;
+    font-size: 12px;
+}
+
 .NextButton {
     margin-top: 2%;
     margin-bottom:2% ;

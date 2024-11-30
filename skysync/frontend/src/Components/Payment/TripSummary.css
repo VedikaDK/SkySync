@@ -4,7 +4,7 @@
     border-radius: 8px;
     margin-top: 20px;
   }
-  
+
   .summary-section {
     background-color: #ffffff;
     padding: 15px;
@@ -31,27 +31,48 @@
 }
 
 #fare {
-  background-color: #e0f7fa; /* Pastel blue background */
+  background-color: #E6F7FF; /* Pastel blue background */
   color: #333;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  padding: 15px 20px;
+  padding: 15px ;
   border-radius: 8px;
-  width: 90%;
+  border: 2px solid #0b0b0d; 
+  width: 50%;
+  margin-left: 25%;
+  cursor: pointer; /* Pointer cursor for better UX */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+#fare:hover {
+  background-color: #07083d; /* Darker pastel blue on hover */
+  color: #fff; /* White text on hover */
+  transform: translateY(-2px) scale(1.02); /* Slight upward motion and scaling */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+/* Focus effect (for accessibility) */
+#fare:focus {
+  outline: 2px solid #26c6da; /* Highlight border for focus */
+  outline-offset: 2px;
 }
 
 #price {
-  background-color: #ffffff; /* White background */
-  color: #333;
+  background-color: #079f2f; /* White background */
+  color: #fffdfd;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
   padding: 15px;
   margin-top: 5px;
   border-radius: 8px;
-  width: 90%;
+  border: 2px solid #0b0b0d; 
+  width: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+  margin-left: 23%;
 }
+
 
   

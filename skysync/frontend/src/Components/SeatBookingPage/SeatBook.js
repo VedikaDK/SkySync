@@ -130,7 +130,7 @@ useEffect(() => {
                                 <label>First Name:</label>
                                 <input
                                     type="text"
-                                    name="firstName"
+                                    name="firstname"
                                     value={formData.firstname}
                                     onChange={handleChange}
                                     required
@@ -140,7 +140,7 @@ useEffect(() => {
                                 <label>Last Name:</label>
                                 <input
                                     type="text"
-                                    name="lastName"
+                                    name="lastname"
                                     value={formData.lastname}
                                     onChange={handleChange}
                                     required
@@ -151,7 +151,7 @@ useEffect(() => {
                                 <label>Phone Number:</label>
                                 <input
                                     type="tel"
-                                    name="phoneNo"
+                                    name="phone"
                                     value={formData.phone}
                                     onChange={handleChange}
                                     required

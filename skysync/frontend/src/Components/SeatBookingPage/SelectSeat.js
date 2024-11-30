@@ -142,42 +142,6 @@ if (flightID && date) {
 }
   }, [flightID, date]); // Run the effect whenever flightID or date changes
   
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   // Use useEffect to log the updated available seat count whenever it changes
   useEffect(() => {
@@ -445,12 +409,14 @@ const getSeatStatus = (seatId) => {
 
   return (
     <div className="seat-map">
+     
+
       <div className="seat-legend">
         <span className="seat available">Available</span>
         <span className="seat selected">Selected</span>
         <span className="seat reserved">Reserved</span>
       </div>
-
+ 
       {/* Display Available Seat Count */}
       <div className="Seat-Count">
         <h4>Available Seats: {availableSeatCount}</h4>
@@ -468,6 +434,7 @@ const getSeatStatus = (seatId) => {
       <button onClick={confirmBooking} className="confirm-button">
         Confirm Selected Seat
       </button>
+      
     </div>
   );
 }
