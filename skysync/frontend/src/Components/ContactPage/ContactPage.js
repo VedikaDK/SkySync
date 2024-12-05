@@ -59,9 +59,9 @@ const ContactPage = () => {
         />
         <nav>
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/About">About</a></li>
+          <li><a href="/ContactPage">Contact</a></li>
           </ul>
         </nav>
       </div>

@@ -1,8 +1,17 @@
 import React from 'react';
 import './PageTwo.css';
 import airplaneImage from './PageTwo.jpg'; // Replace with your airplane image
+import { useNavigate } from "react-router-dom";
 
 const PageTwo = () => {
+     
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+      navigate("/CustomerFeedbacks");
+
+
+  };
   return (
     <div className="page-two">
       <div className="page-two-left">
@@ -13,7 +22,7 @@ const PageTwo = () => {
         </p>
 
 
-        <button className="page-two-btn">Get Started</button>
+        <button className="page-two-btn" onClick={handleNavigation}>Get Started</button>
         <p>
           Want to know more? <a href="/About">Learn More</a>
         </p>

@@ -15,6 +15,10 @@
     margin: 0;
 }
 
+.Navbar_container{
+    background-color: rgb(255, 159, 50);
+}
+
 .signupc {
    
     background-color: rgba(0, 0, 0, 0.6); /* Dark transparent background */

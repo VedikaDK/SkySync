@@ -4,6 +4,7 @@ import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../../context/UserAuthContext";
 import './Signup.css'; 
+import Navbar from "../Navbar/Navbar";
 
 
 const Signup = () => {
@@ -63,7 +64,9 @@ const Signup = () => {
 
   return (
     <>
+
     <div className="signuppage">
+      
    <div className='signupc'> 
       <div className="signupcontainer">
         
@@ -141,6 +144,7 @@ const Signup = () => {
             </Button>
           </div>
         </Form>
+
       </div>
 
 

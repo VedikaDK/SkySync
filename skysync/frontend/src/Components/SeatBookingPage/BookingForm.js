@@ -125,9 +125,7 @@ const BookingForm = ({ SelectedSeatData, onDetailsChange }) => {
                     ))}
                 </div>
             )}
-            <button onClick={handlePrintToConsole} className="print-button">
-                Print Details to Console
-            </button>
+            
         </div>
     );
 };

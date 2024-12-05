@@ -39,10 +39,110 @@
   height: 20px;
   margin: 0 20px;
 }
+.flightSearchHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 10%;
+  width: 80%;
+}
 
-.flightSearch {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+.headerTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.filterSection {
+  position: absolute;
+  right: 5%;
+  
+}
+
+.filterButton {
+  background-color: #004080; /* Green background for filter button */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for effect */
+  transition: background-color 0.3s ease;
+}
+
+.filterButton:hover {
+  background-color: #3e62b5; /* Darker green on hover */
+}
+
+.filterButtonIcon {
+  margin-left: 8px;
+}
+/* Existing dropdown styling */
+.dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  padding: 10px 0;
+  width: 200px; /* Slightly wider for better visibility */
+}
+
+/* Header styling within dropdown */
+.dropdown p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #004080;
+  margin: 10px 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ddd; /* Add a bottom border to separate sections */
+}
+
+/* Styling for each filter option button */
+.dropdown button {
+  background-color: #e8f0fd; /* Light blue background */
+  color: #333;
+  padding: 10px 20px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600; /* Make text a bit bolder */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+  border-radius: 4px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Hover effect for filter options */
+.dropdown button:hover {
+  background-color: #c8d8f7; /* Slightly darker blue on hover */
+  color: #004080; /* Text color to match theme on hover */
+}
+
+/* Focus effect for keyboard navigation */
+.dropdown button:focus {
+  outline: none;
+  box-shadow: 0 0 4px #004080; /* Blue outline for focus */
+}
+
+/* Specific styling for sorting sections */
+.dropdown p + button {
+  margin-top: 8px; /* Adds spacing between section header and first button */
+}
+
+.dropdown hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ccc;
 }
 
 .flightResult {
