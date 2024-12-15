@@ -6,10 +6,10 @@ const PDFDocument = require("pdfkit");
 const Booking = require("../model/Booking");
 const FlightSchedule = require("../model/FlightSchedule");
 const razorpayInstance = createRazorpayInstance();
+const User=require("../model/User");
 
 exports.bookTicket = async (req, res) => {
   const { Flight, price, deptCity, arrCity, date, time, seat, passengerNames, contact } = req.body;
-
   if (!Flight || !price || !deptCity || !arrCity || !date || !time || !seat || !passengerNames || !contact) {
     return res.status(400).json({
       success: false,
@@ -38,7 +38,8 @@ exports.verifyPayment = async (req, res) => {
   try {
     const { razorpay_order_id, payment_id, signature, flightDetails } = req.body;
     const secret = process.env.RAZORPAY_KEY_SECRET;
-
+    
+    console.log("Passanger name ",flightDetails.passengerNames);
     if (!razorpay_order_id || !payment_id || !signature || !flightDetails) {
       return res.status(400).json({ success: false, message: "Invalid request data" });
     }
@@ -91,6 +92,7 @@ exports.verifyPayment = async (req, res) => {
       await flightSchedule.save();
     }
 
+ 
     // Generate ticket PDF
     const doc = new PDFDocument();
     const pdfFileName = `ticket_${razorpay_order_id}.pdf`;
@@ -118,17 +120,53 @@ exports.verifyPayment = async (req, res) => {
     .fontSize(18)
     .text("Flight Details", 100, 280, { align: "center" })
     .fontSize(16)
-    .text(`Passenger Name: ${flightDetails.passengerNames}`, 100, 330)
-    .text(`Contact Number: ${flightDetails.contact}`, 100, 380)
-    .text(`Flight: ${flightDetails.Flight}`, 100, 405)
-    .text(`Departing City: ${flightDetails.deptCity}`, 100, 430)
-    .text(`Arriving City: ${flightDetails.arrCity}`, 100, 455)
-    .text(`Date: ${flightDetails.date}`, 100, 480)
-    .text(`Time: ${flightDetails.time}`, 100, 505)
-    .text(`Seat: ${flightDetails.seat}`, 100, 530)
-    .text(`Thanks for booking with us :) !`, 100, 700, { align: "center" });
+    // .text(`Passenger Name: ${flightDetails.passengerNames}`, 100, 330)
+    
+                // Add passenger details dynamically
+    let yPosition = 330; // Starting y-coordinate for passenger details
+    const lineSpacing = 40;
+    flightDetails.passengerNames.forEach((passenger, index) => {
+      doc.text(
+        `Passenger ${index + 1}: Name - ${passenger.name}, Age - ${passenger.age}, Gender - ${passenger.gender}, Seat - ${passenger.seatNumber}`,
+        100,
+        yPosition
+      );
+      yPosition += lineSpacing; // Move down for the next passenger
+    })
 
-    doc.end();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Add remaining details
+doc.text(`Contact Number: ${flightDetails.contact}`, 100, yPosition + 10)
+.text(`Flight: ${flightDetails.Flight}`, 100, yPosition + 35)
+.text(`Departing City: ${flightDetails.deptCity}`, 100, yPosition + 60)
+.text(`Arriving City: ${flightDetails.arrCity}`, 100, yPosition + 85)
+.text(`Date: ${flightDetails.date}`, 100, yPosition + 110)
+.text(`Time: ${flightDetails.time}`, 100, yPosition + 135)
+.text(`Seat: ${flightDetails.seat}`, 100, yPosition + 160)
+.text(`Thanks for booking with us :) !`, 100, yPosition + 200, { align: "center" });
+
+doc.end();
   } catch (error) {
     console.error("Error in verifyPayment:", error);
 

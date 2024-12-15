@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './ThankYou.css'; // Import the CSS file
+import Navbar from '../Navbar/Navbar'
 
 const ThankYou = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const ThankYou = () => {
       backgroundPosition: 'center',
       minHeight: '100vh',
     }}>
+      <Navbar/>
       <h1 id="heading">Thank You For Booking With Us! 😊</h1>
       <p id="head2">Your booking has been confirmed</p>
       {details && (

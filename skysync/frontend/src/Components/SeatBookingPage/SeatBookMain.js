@@ -120,7 +120,7 @@ const handleUserDetails = (formData) => {
         date: departureDate,
         time: DepartingTime,
         seats: SelectedSeatData.length > 0 ? SelectedSeatData : ['No seats selected'], // Ensure valid seats
-        passengerNames: passengersData,
+        passengerNames: passengersData,//object
         contact: userdata.phone,
         price: totalPrice, // Calculate price dynamically
       };

@@ -26,6 +26,7 @@ const BookingForm = ({ SelectedSeatData, onDetailsChange }) => {
         updatedSeats[index][name] = value;
         setSeatInfo(updatedSeats);
         console.log(`Updated seatInfo[${index}]:`, updatedSeats[index]); // Log each change
+        onDetailsChange(updatedSeats); 
     };
 
     const handleGenderChange = (e, index) => {
@@ -123,6 +124,7 @@ const BookingForm = ({ SelectedSeatData, onDetailsChange }) => {
                             </div>
                         </div>
                     ))}
+                    
                 </div>
             )}
             
