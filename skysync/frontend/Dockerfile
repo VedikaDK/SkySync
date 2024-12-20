@@ -11,7 +11,7 @@ COPY skysync/frontend/package.json .
 RUN npm install
 
 # Copy the rest of the frontend directory into the container
-COPY . .  # Ensure all files are copied correctly
+COPY skysync/frontend .  # Ensure all files are copied correctly
 
 # Expose the port that the app will run on
 EXPOSE 3000
