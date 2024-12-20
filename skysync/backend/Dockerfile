@@ -5,7 +5,7 @@ FROM node:18.9.1
 WORKDIR /app
 
 # Copy package.json and package-lock.json first to leverage Docker caching
-COPY package*.json ./
+COPY backend/package*.json ./
 
 # Install dependencies inside the container
 RUN npm install
@@ -21,7 +21,8 @@ COPY . .
 
 # Rebuild bcrypt with the proper environment
 RUN npm rebuild bcrypt --build-from-source
-
+ENV HOST=0.0.0.0
+ENV PORT=5000
 # Expose the application port
 EXPOSE 5000
 
