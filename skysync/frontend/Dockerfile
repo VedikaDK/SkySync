@@ -1,6 +1,6 @@
 FROM node:18.9.1
 
-WORKDIR /app
+WORKDIR /app/frontend
 
 COPY frontend/package.json .
 
