@@ -2,7 +2,7 @@ FROM node:18.9.1
 
 WORKDIR /app
 
-COPY package.json .
+COPY frontend/package.json .
 
 RUN npm install
 
