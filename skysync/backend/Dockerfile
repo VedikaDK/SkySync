@@ -17,7 +17,7 @@ RUN npm install -g nodemon
 RUN npm install -g node-pre-gyp
 
 # Copy the rest of the application code
-COPY . .
+COPY backend/ ./
 
 # Rebuild bcrypt with the proper environment
 RUN npm rebuild bcrypt --build-from-source
