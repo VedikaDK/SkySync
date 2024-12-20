@@ -2,10 +2,10 @@
 FROM node:18.9.1
 
 # Set the working directory inside the container
-WORKDIR /app/frontend
+WORKDIR /app
 
 # Copy the frontend package.json into the container's working directory
-COPY frontend/package.json ./package.json
+COPY skysync/frontend/package.json .
 
 # Install dependencies based on the package.json
 RUN npm install
