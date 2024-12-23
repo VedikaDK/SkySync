@@ -132,6 +132,7 @@ exports.verifyPayment = async (req, res) => {
         yPosition
       );
       yPosition += lineSpacing; // Move down for the next passenger
+      
     })
 
 
