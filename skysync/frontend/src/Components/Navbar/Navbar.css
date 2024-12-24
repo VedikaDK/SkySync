@@ -1,46 +1,76 @@
 .navbar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #f8f8f840;
-    box-shadow: 0px 4px 2px -2px gray;
-  }
-  
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  .navbar ul li {
-    margin-right: 20px;
-  }
-  
-  .navbar ul li a {
-    text-decoration: none;
-    color: #ffffff; 
-    font-weight: bold;
-  }
-  
- .auth-btn {
-    padding: 10px 20px;
-    background-color: #004080;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 10%;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f840;
+  box-shadow: 0px 4px 2px -2px gray;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-right: 20px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #004080; 
+  font-weight: bold;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  /* gap: 10px; Adjust this value to control spacing between buttons */
+}
+
+.auth-btn {
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 15px; /* Adjust padding for consistent button size */
+}
+
+.profile-btn {
+  width: 100px; /* Make sure this is explicitly set */
+  height: 50px; 
+  background-color: #2196f3;
+  background-image: url('bglogo.jpg');
+  background-size: cover; /* Ensures the image covers the button */
+  background-position: center; 
+  border: none;
+  border-radius: 50%; /* Ensures it's a circle */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds some depth */
+  margin-left: 70px;
+  margin-right: 50px;
+}
+
+.profile-btn:hover {
+  background-color: #1976d2;
+}

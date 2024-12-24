@@ -1,0 +1,193 @@
+.profile-container {
+  max-width: 500px;
+ 
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center align everything in the profile container */
+}
+
+.profile-details {
+  margin-top: 20px;
+}
+
+.gender{
+  width: 100px; /* Make sure this is explicitly set */
+  height: 100px; 
+  background-color: #2196f3;
+  background-image: url('bglogo.jpg');
+  background-size: cover; /* Ensures the image covers the button */
+  background-position: center; 
+  border: none;
+  border-radius: 50%; /* Ensures it's a circle */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds some depth */
+  margin-left: 200px;
+}
+.profile-name {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.profile-email {
+  font-size: 16px;
+  color: #666;
+}
+
+.profile-bio {
+  margin-top: 20px;
+}
+
+.profile-bio h2 {
+  font-size: 20px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.profile-bio p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+/* General styling for booking history */
+.booking-history {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0); /* Light background for contrast */
+}
+
+.flight-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between boarding passes */
+}
+
+/* Boarding pass card styling */
+.boarding-pass {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 250px;
+  margin: 0 auto; /* Center the boarding pass */
+  background: #fff; /* White background for the pass */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd; /* Subtle border for definition */
+}
+
+/* Left section for QR or placeholder */
+.pass-section.left {
+  width: 20%;
+  background: #cfe9ff; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-placeholder {
+  width: 120px;
+  height: 120px;
+  font-size: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #cfe9ff; /* Optional: Light gray background for contrast */
+  border-radius: 5px;
+  overflow: hidden; /* Ensures the image fits neatly */
+}
+
+
+
+/* Middle section for flight info */
+.pass-section.middle {
+  width: 50%;
+  text-align: center;
+  background: #f9f9f9; /* Slightly lighter background */
+  border-left: 2px dashed #ddd; /* Dashed separator */
+  border-right: 2px dashed #ddd; /* Dashed separator */
+  padding: 10px;
+}
+
+.flight-info {
+  margin: 10px 0;
+}
+
+.flight-info h3 {
+  margin: 5px 0;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.flight-info p {
+  margin: 3px 0;
+  font-size: 0.9em;
+  color: #555; /* Subtle text color */
+}
+
+.flight-icon {
+  font-size: 2em;
+  color: #555; /* Neutral color */
+}
+
+/* Right section for additional details */
+.pass-section.right {
+  width: 30%;
+  background: #cfe9ff; /* Light gray background */
+  padding: 15px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pass-section.right p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #333; /* Darker text for visibility */
+}
+
+.pass-section.right strong {
+  font-weight: bold;
+}
+
+#flight-id{
+  font-size: 40px;
+  color: #004080;
+ 
+}
+#date{
+  font-size: 20px;
+}
+#to{
+  font-size: 25px;
+  color: #004080;
+}
+/* General responsiveness */
+@media (max-width: 768px) {
+  .boarding-pass {
+    flex-direction: column; /* Stack sections vertically on smaller screens */
+  }
+
+  .pass-section {
+    width: 100%; /* Take full width */
+    text-align: center;
+  }
+
+  .pass-section.middle,
+  .pass-section.right {
+    border: none; /* Remove separators for compact view */
+  }
+}

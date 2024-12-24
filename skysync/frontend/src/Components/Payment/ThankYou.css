@@ -1,4 +1,10 @@
 /* Corrected selectors */
+body {
+  background-image: url('bg.jpg'); /* Replace with your image path */
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-repeat: no-repeat; /* Prevents repeating the image */
+  background-attachment: fixed; /* Makes the background fixed while scrolling */
+}
 #heading {
     color: black;
     font-size: 40px;
@@ -7,6 +13,6 @@
   
   #head2 {
     font-size: 19px;
-    margin-top: 610px;
+    margin-top: 500px;
     color: black;
 }

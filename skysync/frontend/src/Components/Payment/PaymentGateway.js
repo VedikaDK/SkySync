@@ -33,6 +33,7 @@ const PaymentGateway = async (details) => {
       seat:details.seats,
       passengerNames: details.passengerNames || 'Unknown Passenger',
       contact: details.contact || 'Unknown Contact',
+      email: details.email || 'Unknown',
     };
 
     console.log("Payment options:", options); // Debugging

@@ -6,7 +6,8 @@ const seatSchema = new mongoose.Schema({
     type: String, 
     enum: ['available', 'reserved', 'selected'], 
     default: 'available' 
-  }  
+  },
+  expiresAt: { type: Date, default: null } // Expiration time for "selected" status
 });
 
 const flightScheduleSchema = new mongoose.Schema({

@@ -7,10 +7,11 @@ const Booking = require("../model/Booking");
 const FlightSchedule = require("../model/FlightSchedule");
 const razorpayInstance = createRazorpayInstance();
 const User=require("../model/User");
+const Revenue = require("../model/Revenue");
 
 exports.bookTicket = async (req, res) => {
-  const { Flight, price, deptCity, arrCity, date, time, seat, passengerNames, contact } = req.body;
-  if (!Flight || !price || !deptCity || !arrCity || !date || !time || !seat || !passengerNames || !contact) {
+  const { Flight, price, deptCity, arrCity, date, time, seat, passengerNames, contact, email } = req.body;
+  if (!Flight || !price || !deptCity || !arrCity || !date || !time || !seat || !passengerNames || !contact || !email) {
     return res.status(400).json({
       success: false,
       message: "All flight details, passenger name, and contact are required",
@@ -83,6 +84,20 @@ exports.verifyPayment = async (req, res) => {
       await newBooking.save();
     }
 
+    try {
+      const newrevenue = new Revenue({
+        flightId: flightDetails.Flight,
+        dateOfJourney: flightDetails.date,
+        totalPrice: flightDetails.price,
+        commissionRate: 0.05,
+        commissionAmount: flightDetails.price * 0.05,
+      });
+      await newrevenue.save();
+      console.log("Revenue record saved successfully:", newrevenue);
+    } catch (error) {
+      console.error("Error saving revenue record:", error);
+    }
+
     // Update seat availability
     const flightSchedule = await FlightSchedule.findOne({ FlightID: flightDetails.Flight, Date: flightDetails.date });
     if (flightSchedule) {
@@ -91,7 +106,16 @@ exports.verifyPayment = async (req, res) => {
       });
       await flightSchedule.save();
     }
-
+    const userhistory = await User.findOne({ email: flightDetails.email });
+    if (userhistory) {
+      userhistory.history.push({
+          flightID: flightDetails.Flight,
+          date: flightDetails.date,
+          to: flightDetails.arrCity,
+          from: flightDetails.deptCity,
+      });
+    await userhistory.save();
+    }
  
     // Generate ticket PDF
     const doc = new PDFDocument();
@@ -132,6 +156,7 @@ exports.verifyPayment = async (req, res) => {
         yPosition
       );
       yPosition += lineSpacing; // Move down for the next passenger
+      
     })
 
 

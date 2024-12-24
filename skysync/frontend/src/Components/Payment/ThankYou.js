@@ -8,7 +8,7 @@ const ThankYou = () => {
   const { details } = location.state || {};
 
   return (
-    <div  style={{
+    <div  id= "body" style={{
       textAlign: 'center',
       backgroundImage: 'url("./bg.jpg")',
       backgroundSize: 'cover',

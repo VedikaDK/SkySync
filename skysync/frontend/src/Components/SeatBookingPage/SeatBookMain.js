@@ -123,6 +123,7 @@ const handleUserDetails = (formData) => {
         passengerNames: passengersData,//object
         contact: userdata.phone,
         price: totalPrice, // Calculate price dynamically
+        email:userdata.email,
       };
       console.log("Length of array:", FlightPrice * SelectedSeatData.length);
       return <TripSummary details={flightDetails} />;

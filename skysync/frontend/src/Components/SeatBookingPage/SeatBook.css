@@ -1,7 +1,12 @@
+
 .seatpage {
+    background-image: url('bg.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-repeat: no-repeat; /* Prevents repeating the image */
+    background-attachment: fixed; /* Makes the background fixed while scrolling */
     width: 100%; /* Full width relative to parent */
     height: 100%;  /* Full height relative to parent */
-    background-color: rgb(255, 255, 255); /* Background color */
+    /*background-color: rgb(255, 255, 255); /* Background color */
     position: fixed; /* Fixed position ensures it covers the window */
     display: flex; /* Enable flexbox for the content */
     flex-direction: column; /* Align content vertically */
@@ -11,7 +16,7 @@
 
 .navbar-container {
     width: 100%; /* Full width */
-    background-color: #333; /* Optional: Navbar background color */
+    background-color: rgba(255, 255, 255, 0); /* Optional: Navbar background color */
     position: relative; /* Keep it at the top */
     flex-shrink: 0;
 }

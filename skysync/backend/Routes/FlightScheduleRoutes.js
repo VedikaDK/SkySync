@@ -7,13 +7,15 @@ const FlightSchedule = require('../model/FlightSchedule'); // Ensure this path i
 
 
 
-// ///Route which adds the new flight and make changes in exixting one 
-// router.post('/flight-schedule/book-seat', async (req, res) => {
-//     const { FlightID, date, SeatAvailability, FlightPrice, DepartingTime, ArrivingTime, BookingStatus } = req.body;
 
-//     console.log(FlightID, date, SeatAvailability, FlightPrice, DepartingTime, ArrivingTime, BookingStatus);
-   
-//     // Check for missing fields
+
+//For Selected seats to be in database  MAIN CODE
+
+// router.post('/flight-schedule/book-seat', async (req, res) => {
+//     const { FlightID, date, SeatAvailability, FlightPrice, DepartingTime, ArrivingTime } = req.body;
+
+//     console.log(FlightID, date, SeatAvailability, FlightPrice, DepartingTime, ArrivingTime);
+
 //     if (!FlightID || !date || !SeatAvailability || !FlightPrice || !DepartingTime || !ArrivingTime) {
 //         return res.status(400).json({
 //             error: "Missing required fields: FlightID, Date, SeatAvailability, FlightPrice, DepartingTime, ArrivingTime",
@@ -22,96 +24,72 @@ const FlightSchedule = require('../model/FlightSchedule'); // Ensure this path i
 //     }
 
 //     try {
-//         // Convert date to proper Date format
 //         const BookingDate = new Date(date);
 
 //         // Check if flight schedule exists for the given FlightID and Date
 //         let flightSchedule = await FlightSchedule.findOne({ FlightID: FlightID, Date: BookingDate });
 
-//         // If no flight schedule exists, create a new one using the dynamically passed data
 //         if (!flightSchedule) {
-//             console.log(`No flight schedule found for FlightID: ${FlightID}, Date: ${BookingDate}. Creating new schedule.`);
-
-//             // Create a new flight schedule based on the request body
+//             // Create a new flight schedule
 //             flightSchedule = new FlightSchedule({
 //                 FlightID,
 //                 Date: BookingDate,
 //                 SeatAvailability: SeatAvailability.map(seat => ({
 //                     seatNumber: seat.seatNumber,
-//                     status: 'reserved'  // Default status is 'available' if not provided
+//                     status: 'selected'  // Mark as 'selected' for initial selection
 //                 })),
 //                 FlightPrice,
 //                 DepartingTime,
 //                 ArrivingTime,
-//                 BookingStatus
+//                 BookingStatus: 'open'
 //             });
 
-
-
-            
-
-//             // Save the newly created flight schedule
 //             await flightSchedule.save();
 //             console.log('New flight schedule created:', flightSchedule);
 //         } else {
-//             // If schedule exists, update the seat availability with newly selected seats
-//             console.log(`Flight schedule found for FlightID: ${FlightID}, Date: ${BookingDate}. Updating seat availability.`);
-
-//             // Iterate through the incoming SeatAvailability and update statuses
+//             // Update existing flight schedule
 //             SeatAvailability.forEach(seat => {
 //                 const seatIndex = flightSchedule.SeatAvailability.findIndex(s => s.seatNumber === seat.seatNumber);
+
 //                 if (seatIndex !== -1) {
-//                     // If the seat exists, mark it as reserved if it's available
 //                     if (flightSchedule.SeatAvailability[seatIndex].status === 'available') {
-//                         flightSchedule.SeatAvailability[seatIndex].status = 'reserved';
-//                         console.log(`Seat ${seat.seatNumber} marked as reserved`);
+//                         flightSchedule.SeatAvailability[seatIndex].status = 'selected';
+//                         console.log(Seat ${seat.seatNumber} marked as selected);
 //                     } else {
-//                         console.log(`Seat ${seat.seatNumber} is already reserved`);
+//                         console.log(Seat ${seat.seatNumber} is not available);
 //                     }
 //                 } else {
-//                     // If seat doesn't exist, add it as a new reserved seat
-//                     flightSchedule.SeatAvailability.push({ seatNumber: seat.seatNumber, status: 'reserved' });
-//                     console.log(`New seat ${seat.seatNumber} added and marked as reserved`);
+//                     flightSchedule.SeatAvailability.push({ seatNumber: seat.seatNumber, status: 'selected' });
+//                     console.log(New seat ${seat.seatNumber} added and marked as selected);
 //                 }
 //             });
 
-//             // Update dynamic fields (price, time, status)
-//             flightSchedule.FlightPrice = FlightPrice;      // Update flight price
-//             flightSchedule.DepartingTime = DepartingTime;  // Update departing time
-//             flightSchedule.ArrivingTime = ArrivingTime;    // Update arriving time
-
-//             // Check if all seats are reserved
-//             const allSeatsReserved = flightSchedule.SeatAvailability.every(seat => seat.status === 'reserved');
-//             if (allSeatsReserved) {
-//                 flightSchedule.BookingStatus = 'fully booked';
-//             } else {
-//                 flightSchedule.BookingStatus = 'open';
-//             }
-
-//             // Save the updated flight schedule
 //             await flightSchedule.save();
-//             console.log('Flight schedule updated:', flightSchedule);
+//             console.log('Flight schedule updated with selected seats:', flightSchedule);
 //         }
 
-//         // Return the updated or newly created flight schedule
 //         res.status(200).json({
-//             message: 'Seats successfully booked or updated!',
+//             message: 'Seats successfully selected!',
 //             flightSchedule
 //         });
 
 //     } catch (error) {
-//         console.error("Error processing flight booking:", error);
+//         console.error("Error processing seat selection:", error);
 //         res.status(500).json({ message: 'Something went wrong!' });
 //     }
 // });
 
-//For Selected seats to be in database
+
+
+//CODE NO 2
+
 
 router.post('/flight-schedule/book-seat', async (req, res) => {
     const { FlightID, date, SeatAvailability, FlightPrice, DepartingTime, ArrivingTime } = req.body;
 
     console.log(FlightID, date, SeatAvailability, FlightPrice, DepartingTime, ArrivingTime);
 
+    // Validate required fields
     if (!FlightID || !date || !SeatAvailability || !FlightPrice || !DepartingTime || !ArrivingTime) {
         return res.status(400).json({
             error: "Missing required fields: FlightID, Date, SeatAvailability, FlightPrice, DepartingTime, ArrivingTime",
@@ -122,51 +100,54 @@ router.post('/flight-schedule/book-seat', async (req, res) => {
     try {
         const BookingDate = new Date(date);
 
-        // Check if flight schedule exists for the given FlightID and Date
-        let flightSchedule = await FlightSchedule.findOne({ FlightID: FlightID, Date: BookingDate });
+        // Atomic operation: Find flight schedule or create it if not exists
+        const flightSchedule = await FlightSchedule.findOneAndUpdate(
+            { FlightID, Date: BookingDate },
+            { 
+                $setOnInsert:{
+                    FlightID, 
+                    Date: BookingDate, 
+                    SeatAvailability: [],
+                    FlightPrice,
+                    DepartingTime,
+                    ArrivingTime,
+                    BookingStatus: 'open'
+                } 
+            },
+            { new: true, upsert: true } // Ensure it returns the updated document and performs upsert if no match
+        );
 
-        if (!flightSchedule) {
-            // Create a new flight schedule
-            flightSchedule = new FlightSchedule({
-                FlightID,
-                Date: BookingDate,
-                SeatAvailability: SeatAvailability.map(seat => ({
-                    seatNumber: seat.seatNumber,
-                    status: 'selected'  // Mark as 'selected' for initial selection
-                })),
-                FlightPrice,
-                DepartingTime,
-                ArrivingTime,
-                BookingStatus: 'open'
-            });
+        const seatUpdates = [];
+        SeatAvailability.forEach(seat => {
+            const seatIndex = flightSchedule.SeatAvailability.findIndex(s => s.seatNumber === seat.seatNumber);
 
-            await flightSchedule.save();
-            console.log('New flight schedule created:', flightSchedule);
-        } else {
-            // Update existing flight schedule
-            SeatAvailability.forEach(seat => {
-                const seatIndex = flightSchedule.SeatAvailability.findIndex(s => s.seatNumber === seat.seatNumber);
-
-                if (seatIndex !== -1) {
-                    if (flightSchedule.SeatAvailability[seatIndex].status === 'available') {
-                        flightSchedule.SeatAvailability[seatIndex].status = 'selected';
-                        console.log(`Seat ${seat.seatNumber} marked as selected`);
-                    } else {
-                        console.log(`Seat ${seat.seatNumber} is not available`);
-                    }
-                } else {
-                    flightSchedule.SeatAvailability.push({ seatNumber: seat.seatNumber, status: 'selected' });
-                    console.log(`New seat ${seat.seatNumber} added and marked as selected`);
+            if (seatIndex !== -1) {
+                const existingSeat = flightSchedule.SeatAvailability[seatIndex];
+                if (existingSeat.status === 'available') {
+                    // Mark seat as selected and set expiration time (5 minutes)
+                    flightSchedule.SeatAvailability[seatIndex].status = 'selected';
+                    flightSchedule.SeatAvailability[seatIndex].expiresAt = new Date(Date.now() + 2 * 60 * 1000); // 5 minutes expiration
+                    seatUpdates.push(seat.seatNumber);
                 }
-            });
+            } else {
+                // Add new seat as selected
+                flightSchedule.SeatAvailability.push({
+                    seatNumber: seat.seatNumber,
+                    status: 'selected', // Set as selected for initial state
+                    expiresAt: new Date(Date.now() + 5 * 60 * 1000), // Set expiration time for the seat
+                });
+                seatUpdates.push(seat.seatNumber);
+            }
+        });
 
-            await flightSchedule.save();
-            console.log('Flight schedule updated with selected seats:', flightSchedule);
-        }
+        // Save the updated flight schedule with seat selections
+        await flightSchedule.save();
 
+        // Respond with success and details of updated seats
         res.status(200).json({
             message: 'Seats successfully selected!',
-            flightSchedule
+            updatedSeats: seatUpdates,
+            flightSchedule,
         });
 
     } catch (error) {
@@ -174,63 +155,6 @@ router.post('/flight-schedule/book-seat', async (req, res) => {
         res.status(500).json({ message: 'Something went wrong!' });
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -727,6 +651,3 @@ router.post("/available-seats", async (req, res) => {
 
 
 module.exports = router;
-
-
-

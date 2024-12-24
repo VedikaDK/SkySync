@@ -1,6 +1,26 @@
 const mongoose = require('mongoose')
 
 const {Schema} = mongoose;
+
+const HistorySchema = new Schema({
+    flightID: {
+        type: String,
+        required: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
+    to: {
+        type: String,
+        required: true,
+    },
+    from: {
+        type: String,
+        required: true,
+    },
+}, { _id: false });
+
 const UserSchema = new Schema({
     firebaseUid: {
         type: String,
@@ -34,7 +54,11 @@ const UserSchema = new Schema({
     gender:{
         type: String,
         required:true
-    }
+    },
+    history: {
+        type: [HistorySchema], // Array of HistorySchema
+        default: [], // Default to an empty array if no history exists
+    },
 
 },{timestamps:true});
 

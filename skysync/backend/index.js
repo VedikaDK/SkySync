@@ -6,7 +6,9 @@ const dotenv = require("dotenv");
 // const bcrypt = require('bcrypt');
 const mongoose = require("mongoose");
 const cors = require('cors');
-
+const cleanupExpiredSeats = require('./utils/seatCleanUp'); 
+// Run cleanup every 1 minute
+setInterval(cleanupExpiredSeats, 60 * 1000); // 60 seconds
 dotenv.config();
 //Middelware
 app.use(cors({
@@ -20,6 +22,7 @@ const FlightSchedule = require("./Routes/FlightScheduleRoutes");
 const Feedback = require("./Routes/FeedbackRoutes");
 const Payment = require("./Routes/Payments_routes");
 const Contact = require("./Routes/contactRoutes");
+const Profile = require("./Routes/ProfileRoute");
 
 mongoose.connect(process.env.URI).
 then(()=>{
@@ -39,6 +42,7 @@ app.use('/api',FlightSchedule);
 app.use('/api/feedback',Feedback);
 app.use('/api',Payment);
 app.use("/api",Contact);
+app.use('/api', Profile);
 
 
 
